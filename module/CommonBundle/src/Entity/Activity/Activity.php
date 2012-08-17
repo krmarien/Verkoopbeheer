@@ -5,7 +5,7 @@ namespace CommonBundle\Entity\Activity;
 use DateTime;
 
 /**
- * @Entity(repositoryClass="CommonBundle\Entity\Activity\Activity")
+ * @Entity(repositoryClass="CommonBundle\Repository\Activity\Activity")
  * @Table(name="sale_admin.activity")
  */
 class Activity

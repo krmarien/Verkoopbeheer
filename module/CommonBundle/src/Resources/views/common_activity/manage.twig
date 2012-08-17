@@ -1,0 +1,44 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Activiteiten <small>een overzicht</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3 columns">
+            <p>Hier vind je een overzicht van alle activiteiten die opgenomen zijn in Verkoopbeheer.</p>
+        </div>
+        <div class="span9 columns">
+            <table class="table table-bordered zebra-striped">
+                <tr>
+                    <th>Naam</th>
+                    <th>Plaats</th>
+                    <th>Winst</th>
+                    <th>Datum</th>
+                    <th>Acties</th>
+                </tr>
+                {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.getName() }}</td>
+                        <td>{{ activity.getLocation() }}</td>
+                        <td>&euro; {{ (activity.getGain()/100)|number_format(2) }}</td>
+                        <td>{{ activity.getDate().format('d/m/Y') }}</td>
+                        <td style="padding: 5px">
+                            <a href="{{ url('common_activity', {'action': 'edit', 'id': activity.getId()}) }}" class="btn btn-primary">Bewerk</a>
+                            <a href="{{ url('common_activity', {'action': 'view', 'id': activity.getId()}) }}" class="btn btn-info">Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color:{% if total < 0  %}#9d261d{% else %}#46a546{% endif %}"><b>Totaal: &euro; {{ (total/100)|number_format(2) }}</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <a href="{{ url('common_activity', {'action': 'add'}) }}" class="btn btn-success">Toevoegen</a>
+        </div>
+    </div>
+{% endblock %}

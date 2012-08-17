@@ -19,7 +19,7 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
-				'index'                            => 'CommonBundle\Controller\IndexController',
+				'common_activity'                            => 'CommonBundle\Controller\ActivityController',
             ),
             'assetic_configuration' => array(
                 'parameters' => array(
@@ -130,15 +130,15 @@ return array(
             'Zend\Mvc\Router\RouteStack' => array(
                 'parameters' => array(
                     'routes' => array(
-                        'index' => array(
+                        'common_activity' => array(
                             'type'    => 'Zend\Mvc\Router\Http\Segment',
                             'options' => array(
                                 'route'    => '/',
                                 'constraints' => array(
                                 ),
                                 'defaults' => array(
-                                    'controller' => 'index',
-                                    'action'     => 'index',
+                                    'controller' => 'common_activity',
+                                    'action'     => 'manage',
                                 ),
                             ),
                         ),
