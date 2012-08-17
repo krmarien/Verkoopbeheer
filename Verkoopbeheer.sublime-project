@@ -1,0 +1,10 @@
+{
+    "folders":
+    [
+        {
+            "path": "/Users/kristofmarien/Sites/Verkoopbeheer",
+            "Name": "Verkoopbeheer",
+            "file_exclude_patterns": [".gitignore", ".gitmodules", "*.sublime*"]
+        }
+    ]
+}

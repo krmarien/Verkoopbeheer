@@ -1,0 +1,51 @@
+{{ doctype() }}
+<html lang="en">
+    <head>
+    	{{ headTitle('Residentie Groenveld - Verkoopbeheer', 'PREPEND') }}
+    	
+    	{{ headMeta() }}        
+    	{{ headLink() }}
+    	{{ headScript() }}
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+        			<a href="{{ url("index") }}" class="brand"><img src="/_common/img/logo_white.png" alt="" /></a>
+        			<ul class="nav">
+        			    <li {% if 'index' == getParam('controller') %}class="active"{% endif %}>
+        				    <a href="{{ url("index") }}">{{ 'Start' }}</a>
+        				</li>
+        			</ul>
+        		</div>
+        	</div>
+        </nav>
+        
+        <header>
+        	<div class="inner">
+        		<div class="container">
+        			<h1>Groenveld - Verkoopbeheer</h1>
+        		</div>
+        	</div>
+        </header>
+        
+        <div class="container">
+            {% include 'common/partials/flashMessenger.twig' %}
+            
+        	{% block content %} {% endblock %}
+        </div>
+        
+        {% if 'development' == environment %}
+           <div class="container" style="text-align: right;">
+                <span class="development_information">
+                	Execution Time: {{ developmentInformation.executionTime }} ms | Doctrine's UoW: {{ developmentInformation.doctrineUnitOfWork }}
+                </span>
+            </div>
+        {% endif %}
+        
+        {{ inlineScript() }}
+        
+        {% block controller_script %} {% endblock %}
+    </body>
+</html>

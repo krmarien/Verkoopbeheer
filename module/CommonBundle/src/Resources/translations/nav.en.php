@@ -1,0 +1,57 @@
+<?php
+return array(
+    'Residence' => 'Residence',
+    'Hire' => 'Hire',
+	'Fun' => 'Fun',
+	'Sports' => 'Sports',
+	'Contact' => 'Contact',
+	'Extra' => 'Extra',
+	'User' => 'User',
+	
+	'Welcome' => 'Welcome',
+	'News' => 'News',
+	'Bread' => 'Bread',
+	'Bike Room' => 'Bike Room',
+	'GV-Room' => 'GV-Room',
+	'History' => 'History',
+	'GVInfo' => 'GVInfo',
+	'Duties and Rights' => 'Duties and Rights',
+	
+	'FAQ' => 'FAQ',
+	'Guide' => 'Guide',
+	'Visitordays' => 'Visitordays',
+	'Lease' => 'Lease',
+	'House Rules' => 'House Rules',
+	'Fire Safety' => 'Fire Safety',
+	'End Rental Period' => 'End Rental Period',
+	'Reapplication' => 'Reapplication',
+	'EPC' => 'EPC',
+	
+	'Photo\'s' => 'Photo\'s',
+	'Calendar' => 'Calendar',
+	'Games' => 'Games',
+	
+	'General' => 'General',
+	'Subscribe' => 'Subscribe',
+	'Basketball' => 'Basketball',
+	'Volleyball' => 'Volleyball',
+	'Football' => 'Football',
+	
+	'Permanence' => 'Permanence',
+	'Map' => 'Map',
+	'Contact Form' => 'Contact Form',
+	'Residents' => 'Residents',
+	
+	'BBQ Lending' => 'BBQ Lending',
+	'Works IMEC' => 'Works IMEC',
+	
+	'Bread' => 'Bread',
+	'Residents' => 'Residents',
+	'Complaints' => 'Complaints',
+	'Defects' => 'Defects',
+	'GV-Room' => 'GV-Room',
+	'Polls' => 'Polls',
+	'Tasks' => 'Tasks',
+	'Residents Form' => 'Residents Form',
+	'Corridor Money' => 'Corridor Money',
+);

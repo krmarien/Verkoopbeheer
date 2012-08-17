@@ -1,0 +1,79 @@
+{{ doctype() }}
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	
+	{{ headTitle('Residentie Groenveld', 'PREPEND') }}
+
+	<style type="text/css">
+	    body {
+	        background: #F0EFE2;
+	        font: normal 13px 'trebuchet ms', arial, sans-serif;
+	    }
+	    
+	    #layout {
+	        margin: 130px auto;
+	        width: 500px;
+	    }
+	    
+	    .header {
+	        font-weight: bold;
+	        color: #d7d4d4;
+	        text-align: right;
+	        margin: 0 6px 5px 0;
+	    }
+	    
+	    pre {
+	        font-family: "Courier New", Courier, monospace;
+	    }
+	    
+	    span {
+	        color: #7AA300;
+	    }
+	    
+	    h2 {
+	        font-size: 15px;
+	        color: #7AA300;
+	    }
+	    
+	    h3 {
+	        margin-top: 10px;
+	        font-size: 13px;
+	    }
+	    
+	    p {
+	        margin: 10px;
+	    }
+	    
+	    .content {
+	        padding: 12px;
+	        background: #eeeeee;
+	        border: 5px solid #d7d4d4;
+	    }
+	    
+	    table {
+	        width: 100%;
+	    }
+	    
+	    th {
+	        text-align: left;
+	    }
+	</style>
+    
+</head>
+
+<body>
+
+<div id="layout">
+    <div class="header"><span>Residentie Groenveld</span> / Error</div>
+    <div class="content">
+        {% autoescape false %}
+            {{ content }}
+        {% endautoescape %}
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,516 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"common_mo",
+				"common_money_revenue"
+			],
+			[
+				"Pr",
+				"PriceValidator"
+			],
+			[
+				"_c",
+				"_cashRegsiter"
+			],
+			[
+				"cash",
+				"cashRegister"
+			],
+			[
+				"is_n",
+				"is_numeric"
+			],
+			[
+				"str_rep",
+				"str_replace"
+			],
+			[
+				"gi",
+				"gitmodules"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 49.0,
+		"selected_items":
+		[
+			[
+				"fold",
+				"Code Folding: Unfold All"
+			],
+			[
+				"",
+				":e - Revert"
+			],
+			[
+				"pac",
+				"Package Control: Discover Packages"
+			],
+			[
+				"pacak",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: dis",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control: en",
+				"Package Control: Enable Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: p",
+				"Package Control: Enable Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 588.0
+	},
+	"console":
+	{
+		"height": 242.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/translations/common.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MailinglistBundle/src/Resources/translations/admin.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/translations/common.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Controller/MoneyController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money/view.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Controller/RevenueController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Controller/ExpenseController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Form/Revenue/Add.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Entity/CashRegister.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Form/Expense/Add.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Entity/Expense.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money_expense/delete.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money_revenue/delete.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money_expense/add.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money_revenue/add.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/variables.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/modal.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/form.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/js/modal.js",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/base.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/layout.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/flashMessages.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/NewsBundle/src/Resources/views/admin_news/delete.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Entity/Revenue.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Form/CashRegister/Edit.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Form/CashRegister/Add.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/layouts/common/partials/subNav.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/layouts/common/partials/navigation.twig",
+		"/Users/kristofmarien/Sites/Groenveld/config/assetic/moneybundle.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money/add.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/common_money/edit.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Repository/CashRegister.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Component/Validator/Name.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Controller/BBQController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Controller/RoomController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Form/BBQ/Add.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/tables.less",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/assets/common/less/text.less",
+		"/Users/kristofmarien/Sites/Groenveld/Groenveld.sublime-project",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Entity/Revenues.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MailinglistBundle/src/Entity/Exclusion.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MailinglistBundle/src/Entity/MailingList.php",
+		"/Users/kristofmarien/Sites/Groenveld/config/application.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/config/assetic/breadbundle.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/NewsBundle/src/Controller/NewsController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Component/Controller/ActionController/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/NewsBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/NewsBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/src/Resources/views/install_money/index.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/autload_register.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/Module.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/NewsBundle/autoload_register.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/autoload_function.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MoneyBundle/autoload_classmap.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/translations/nav.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/translations/nav.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Controller/ResidentsController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Resources/translations/common.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Resources/translations/common.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Form/Residents/Data.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Resources/views/common_residents/room.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Resources/views/common_residents/corridor.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Entity/Users/People/User.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Form/Resident/Search.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ResidentBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/config/assetic/residentbundle.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/DefectController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/ComplaintController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/FormController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/MapController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/OpeningHourController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Form/Defect/Form.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Form/Contact/Form.php",
+		"/Users/kristofmarien/Sites/Groenveld/config/assetic/contactbundle.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/views/common_contact_defect/view.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/views/common_contact_complaint/view.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Form/Complaint/Form.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/PageBundle/src/Resources/config/module.config.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/PageBundle/src/Controller/PageController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Resources/views/common_bread_order/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Controller/OrderController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Resources/translations/common.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Resources/translations/common.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Resources/views/common_reservation_room/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/public/_admin/redactor/langs/en.js",
+		"/Users/kristofmarien/Sites/Groenveld/module/PageBundle/src/Resources/views/admin_page/add.twig",
+		"/Users/kristofmarien/Sites/Groenveld/public/_admin/redactor/css/redactor.css",
+		"/Users/kristofmarien/Sites/Groenveld/public/_admin/redactor/redactor.min.js",
+		"/Users/kristofmarien/Sites/Groenveld/public/_assetic/redactor_css.css",
+		"/Users/kristofmarien/Sites/Groenveld/module/TaskBundle/src/Resources/views/common_task/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/PollBundle/src/Resources/views/common_poll/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/TaskBundle/src/Resources/translations/common.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/TaskBundle/src/Resources/translations/common.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/PollBundle/src/Resources/translations/common.en.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/PollBundle/src/Resources/translations/common.nl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Resources/views/admin_dashboard/index.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Resources/views/common_reservation_bbq/manage.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/views/common_contact_form/view.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/views/common_contact_map/view.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ContactBundle/src/Resources/views/common_opening_hour/overview.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/FAQBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/README.txt",
+		"/Users/kristofmarien/Sites/Groenveld/.htaccess",
+		"/Users/kristofmarien/Sites/Groenveld/vendor/AsseticBundle/src/AsseticBundle/Configuration.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/GameBundle/src/Resources/views/common_game/overview.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/GameBundle/src/Controller/GameController.php",
+		"/Users/kristofmarien/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Component/Controller/ActionController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Component/Acl/Acl.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/CommonBundle/src/Controller/Admin/RoleController.php",
+		"/Users/kristofmarien/Sites/Groenveld/config/autoload/cache.config.php",
+		"/Users/kristofmarien/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Resources/views/common_reservation_room/add.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Entity/Reservation.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Entity/Reservations/BBQ.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Controller/Admin/InstallController.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/MailinglistBundle/src/Component/ListServ/Sync.php",
+		"/Users/kristofmarien/Sites/Groenveld/module/ReservationBundle/src/Resources/views/install_reservation/index.twig",
+		"/Users/kristofmarien/Sites/Groenveld/module/BreadBundle/src/Resources/views/install_bread/index.twig"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"YYYY",
+			"black",
+			"string",
+			"removeNews",
+			"CashRe",
+			"common_page",
+			"sec",
+			"esc",
+			"mode",
+			"            ",
+			"align"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"removeRevenue"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"moneyinsta",
+				"module/MoneyBundle/src/Controller/Admin/InstallController.php"
+			],
+			[
+				"defect",
+				"module/ContactBundle/src/Controller/DefectController.php"
+			],
+			[
+				"module.conf",
+				"module/CommonBundle/src/Resources/config/module.config.php"
+			],
+			[
+				"subn",
+				"module/CommonBundle/src/Resources/layouts/common/partials/subNav.twig"
+			],
+			[
+				"navigation.twig",
+				"module/CommonBundle/src/Resources/layouts/common/partials/navigation.twig"
+			],
+			[
+				"insta",
+				"module/BreadBundle/src/Controller/Admin/InstallController.php"
+			],
+			[
+				"ins",
+				"module/FAQBundle/src/Controller/Admin/InstallController.php"
+			],
+			[
+				".h",
+				".htaccess"
+			],
+			[
+				"read",
+				"README.txt"
+			],
+			[
+				"nav",
+				"module/CommonBundle/src/Resources/translations/nav.en.php"
+			],
+			[
+				"modu",
+				"module/CommonBundle/src/Resources/config/module.config.php"
+			],
+			[
+				"subna",
+				"module/CommonBundle/src/Resources/layouts/common/partials/subNav.twig"
+			],
+			[
+				"commonbundle/src/layouts/common/p",
+				"module/CommonBundle/src/Resources/layouts/common/partials/navigation.twig"
+			],
+			[
+				"pagecon",
+				"module/PageBundle/src/Controller/PageController.php"
+			],
+			[
+				"ordercont",
+				"module/BreadBundle/src/Controller/OrderController.php"
+			],
+			[
+				"room",
+				"module/ReservationBundle/src/Controller/RoomController.php"
+			],
+			[
+				"bbqc",
+				"module/ReservationBundle/src/Controller/BBQController.php"
+			],
+			[
+				"gamebundlecommon_",
+				"module/GameBundle/src/Resources/views/common_game/overview.twig"
+			],
+			[
+				"gamec",
+				"module/GameBundle/src/Controller/GameController.php"
+			],
+			[
+				"nav.nl",
+				"module/CommonBundle/src/Resources/translations/nav.nl.php"
+			],
+			[
+				"nav.en",
+				"module/CommonBundle/src/Resources/translations/nav.en.php"
+			],
+			[
+				"subnav",
+				"module/CommonBundle/src/Resources/layouts/common/partials/subNav.twig"
+			],
+			[
+				"commontrans",
+				"module/CommonBundle/src/Resources/translations/nav.en.php"
+			],
+			[
+				"module",
+				"module/CommonBundle/src/Resources/config/module.config.php"
+			],
+			[
+				"layoutsub",
+				"module/CommonBundle/src/Resources/layouts/common/partials/subNav.twig"
+			],
+			[
+				"layoutnavigation.twig",
+				"module/CommonBundle/src/Resources/layouts/common/partials/navigation.twig"
+			],
+			[
+				"rolecon",
+				"module/CommonBundle/src/Controller/Admin/RoleController.php"
+			],
+			[
+				"acl.p",
+				"module/CommonBundle/src/Component/Acl/Acl.php"
+			],
+			[
+				"module.con",
+				"module/CommonBundle/src/Resources/config/module.config.php"
+			],
+			[
+				"actionc",
+				"module/CommonBundle/src/Component/Controller/ActionController.php"
+			],
+			[
+				"module.config",
+				"module/CommonBundle/src/Resources/config/module.config.php"
+			],
+			[
+				"roomcont",
+				"module/ReservationBundle/src/Controller/RoomController.php"
+			],
+			[
+				"reservation",
+				"module/ReservationBundle/src/Entity/Reservation.php"
+			],
+			[
+				"mailing",
+				"module/MailinglistBundle/src/Entity/MailingList.php"
+			],
+			[
+				"sync",
+				"module/MailinglistBundle/src/Component/ListServ/Sync.php"
+			],
+			[
+				"install_",
+				"module/BreadBundle/src/Resources/views/install_bread/index.twig"
+			],
+			[
+				"reservationinstal",
+				"module/ReservationBundle/src/Controller/Admin/InstallController.php"
+			],
+			[
+				"reservationbundlebbqc",
+				"module/ReservationBundle/src/Controller/BBQController.php"
+			],
+			[
+				"installcontroller",
+				"module/FAQBundle/src/Controller/Admin/InstallController.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 332.0,
+	"status_bar_visible": true
+}
