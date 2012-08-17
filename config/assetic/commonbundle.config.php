@@ -15,7 +15,7 @@
  
 return array(
     'controllers' => array(
-        'index' => array(
+        'common_activity' => array(
             '@common_css',
             '@common_js',
         ),
