@@ -17,6 +17,9 @@
         			    <li {% if 'common_activity' == getParam('controller') %}class="active"{% endif %}>
         				    <a href="{{ url("common_activity") }}">Activiteiten</a>
         				</li>
+                        <li {% if 'common_stock' == getParam('controller') %}class="active"{% endif %}>
+                            <a href="{{ url("common_stock") }}">Stock</a>
+                        </li>
         			</ul>
         		</div>
         	</div>

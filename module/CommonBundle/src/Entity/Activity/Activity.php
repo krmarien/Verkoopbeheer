@@ -50,7 +50,7 @@ class Activity
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The sale items of the activity
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Stock\Item", mappedBy="activity")
+     * @OneToMany(targetEntity="CommonBundle\Entity\Stock\Sale", mappedBy="activity")
      */
     private $saleItems;
 

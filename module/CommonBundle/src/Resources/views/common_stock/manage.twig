@@ -1,0 +1,36 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Stock <small>een overzicht</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3 columns">
+            <p>Hier vind je een overzicht van alle items nog in stock zijn.</p>
+            <p><a href="{{ url('common_stock_purchase', {'action': 'add'}) }}" class="btn btn-success">Aankoop Toevoegen</a></p>
+            <p><a href="{{ url('common_stock', {'action': 'add'}) }}" class="btn btn-success">Item toevoegen</a></p>
+        </div>
+        <div class="span9 columns">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Item</th>
+                    <th width="80px">Aantal</th>
+                    <th width="120px">Totale waarde</th>
+                    <th width="140px">Acties</th>
+                </tr>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.getName() }}</td>
+                        <td>{{ item.getNumberInStock() }}</td>
+                        <td>&euro; {{ (item.getTotalValue()/100)|number_format(2) }}</td>
+                        <td class="actions">
+                            <a href="{{ url('common_stock', {'action': 'edit', 'id': item.getId()}) }}" class="btn btn-primary">Bewerk</a>
+                            <a href="{{ url('common_stock', {'action': 'view', 'id': item.getId()}) }}" class="btn btn-info">Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

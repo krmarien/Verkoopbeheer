@@ -65,6 +65,17 @@ class Item
     }
 
     /**
+     * @param string $name
+     *
+     * @return \CommonBundle\Entity\Stock\Item
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPurchases()

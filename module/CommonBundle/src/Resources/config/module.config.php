@@ -19,7 +19,9 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
-				'common_activity'                            => 'CommonBundle\Controller\ActivityController',
+                'common_activity'       => 'CommonBundle\Controller\ActivityController',
+                'common_stock'          => 'CommonBundle\Controller\StockController',
+                'common_stock_purchase' => 'CommonBundle\Controller\Stock\PurchaseController',
             ),
             'assetic_configuration' => array(
                 'parameters' => array(
@@ -130,7 +132,7 @@ return array(
             'Zend\Mvc\Router\RouteStack' => array(
                 'parameters' => array(
                     'routes' => array(
-                        'common_activity' => array(
+                        'index' => array(
                             'type'    => 'Zend\Mvc\Router\Http\Segment',
                             'options' => array(
                                 'route'    => '/',
@@ -138,6 +140,48 @@ return array(
                                 ),
                                 'defaults' => array(
                                     'controller' => 'common_activity',
+                                    'action'     => 'manage',
+                                ),
+                            ),
+                        ),
+                        'common_activity' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_activity',
+                                    'action'     => 'manage',
+                                ),
+                            ),
+                        ),
+                        'common_stock' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/stock[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_stock',
+                                    'action'     => 'manage',
+                                ),
+                            ),
+                        ),
+                        'common_stock_purchase' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/stock/purchase[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_stock_purchase',
                                     'action'     => 'manage',
                                 ),
                             ),

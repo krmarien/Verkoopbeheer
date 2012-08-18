@@ -1,0 +1,109 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Detail {{ activity.getName() }} <small> <small>overzicht van de activiteit op {{ activity.getDate().format('d/m/Y') }}</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3">
+            <p>Hier krijg je een detail overzicht van een activiteit uit Verkoopbeheer.</p>
+            <a href="{{ url('common_activity') }}" class="btn">Terug</a>
+        </div>
+        <div class="span9">
+            <h3>Verkopen</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Item</th>
+                    <th>Aantal</th>
+                    <th>Totale kostprijs</th>
+                    <th>Acties</th>
+                </tr>
+                {% for item in activity.getSaleItems() %}
+                    <tr>
+                        <td>{{ item.getItem().getName() }}</td>
+                        <td>{{ item.getNumber() }}</td>
+                        <td>&euro; {{ (item.getPrice()/100)|number_format(2) }}</td>
+                        <td class="actions">
+                            <a href="<?= $this->baseurl('/activity/deletesale/sale/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="<?= $this->baseurl('/activity/addsale/activity/'.$this->activity->getId()); ?>" class="btn btn-success">Toevoegen</a>
+            <h3>Geldtelling</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Omschrijving</th>
+                    <th>Bedrag</th>
+                    <th>Datum</th>
+                    <th>Acties</th>
+                </tr>
+                <?php foreach($this->activity->getCounts() as $item): ?>
+                    <tr>
+                        <td><?= $item->getDescription(); ?></td>
+                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
+                        <td><?= $item->getDate()->format('d/m/Y H:i'); ?></td>
+                        <td class="actions">
+                            <a href="<?= $this->baseurl('/count/overview/count/'.$item->getId()); ?>" class="btn small primary">Bekijk</a>
+                            <a href="<?= $this->baseurl('/count/delete/count/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <a href="<?= $this->baseurl('/count/add/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
+            <h3>Inkomsten</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Type</th>
+                    <th>Omschrijving</th>
+                    <th>Bedrag</th>
+                    <th>Acties</th>
+                </tr>
+                <?php foreach($this->activity->getIncomes() as $item): ?>
+                    <tr>
+                        <td><?= $item->getType()->getName(); ?></td>
+                        <td><?= $item->getDescription(); ?></td>
+                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
+                        <td class="actions">
+                            <a href="<?= $this->baseurl('/activity/editincome/income/'.$item->getId()); ?>" class="btn small primary">Bewerk</a>
+                            <a href="<?= $this->baseurl('/activity/deleteincome/income/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <a href="<?= $this->baseurl('/activity/addincome/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
+            <a href="<?= $this->baseurl('/activity/addflowtype/activity/'.$this->activity->getId()); ?>" class="btn small info">Type toevoegen</a>
+            <h3>Uitgaven</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Type</th>
+                    <th>Omschrijving</th>
+                    <th>Bedrag</th>
+                    <th>Acties</th>
+                </tr>
+                <?php if ($this->activity->getTotalSales() > 0): ?>
+                    <tr>
+                        <td>Verkochte drank</td>
+                        <td>De totale kostprijs van verkochte drank</td>
+                        <td>&euro; <?= number_format($this->activity->getTotalSales(), 2); ?></td>
+                        <td></td>
+                    </tr>
+                <?php endif; ?>
+                <?php foreach($this->activity->getExpenses() as $item): ?>
+                    <tr>
+                        <td><?= $item->getType()->getName(); ?></td>
+                        <td><?= $item->getDescription(); ?></td>
+                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
+                        <td class="actions">
+                            <a href="<?= $this->baseurl('/activity/editexpense/expense/'.$item->getId()); ?>" class="btn small primary">Bewerk</a>
+                            <a href="<?= $this->baseurl('/activity/deleteexpense/expense/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <a href="<?= $this->baseurl('/activity/addexpense/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
+            <a href="<?= $this->baseurl('/activity/addflowtype/activity/'.$this->activity->getId()); ?>" class="btn small info">Type toevoegen</a>
+       </div>
+    </div>
+{% endblock %}

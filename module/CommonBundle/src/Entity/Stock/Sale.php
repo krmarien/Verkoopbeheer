@@ -124,7 +124,7 @@ class Sale
     /**
      * @return integer
      */
-    public function getCost()
+    public function getPrice()
     {
         return $this->getPurchase()->getPrice() / $this->getPurchase()->getNumber() * $this->getNumber();
     }

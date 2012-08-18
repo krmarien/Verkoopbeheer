@@ -12,10 +12,22 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 return array(
     'controllers' => array(
         'common_activity' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_stock' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_stock_purchase' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_stock_sale' => array(
             '@common_css',
             '@common_js',
         ),

@@ -1,0 +1,125 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="flashmessage alert alert-success purchase_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De aankoop is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger purchase_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de aankoop.</p>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Detail {{ item.getName() }} <small>een detail overzicht van de stock</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3 columns">
+            <p>Hier vind je een overzicht van alle aankopen en verkopen van een stockitem.</p>
+            <a href="{{ url('common_stock') }}" class="btn">Terug</a>
+        </div>
+        <div class="span9 columns">
+            <h2>Aankopen</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Prijs</th>
+                    <th>Aantal</th>
+                    <th>Nog in stock</th>
+                    <th>Datum</th>
+                    <th width="80px">Acties</th>
+                </tr>
+                {% for purchase in item.getPurchases() %}
+                    <tr class="purchase">
+                        <td>&euro; {{ (purchase.getPrice()/100)|number_format(2) }}</td>
+                        <td>{{ purchase.getNumber() }}</td>
+                        <td>{{ purchase.getNumberInStock() }}</td>
+                        <td>{{ purchase.getDate().format('d/m/Y') }}</td>
+                        <td class="actions">
+                            {% if purchase.getNumber() == purchase.getNumberInStock() %}
+                                <a href="#" class="btn btn-danger delete" data-id="{{ purchase.getId() }}" data-date="{{ purchase.getDate().format('d/m/Y') }}" data-number="{{ purchase.getNumber() }}">Verwijder</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <h2>Verkopen</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Activiteit</th>
+                    <th>Aantal</th>
+                    <th>Prijs</th>
+                </tr>
+                {% for sale in item.getSales() %}
+                    <tr>
+                        <td>{{ sale.getActivity().getName() }}</td>
+                        <td>{{ sale.getNumber() }}</td>
+                        <td>&euro; {{ (sale.getPrice()/100)|number_format(2) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div id="removePurchase" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Aankoop</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de aankoop van <b class="date"></b> (<span class="number"></span> stuks) te verwijderen?
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block controller_script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.purchase .delete').click(openModal);
+        });
+
+        function openModal(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removePurchase = $('#removePurchase');
+            removePurchase.find('.date').html($(this).data('date'));
+            removePurchase.find('.number').html($(this).data('number'));
+            removePurchase.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_stock_purchase', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.purchase_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removePurchase.modal('hide');
+                    } else {
+                        errorRemove();
+                    }
+                }, 'json').error(errorRemove);
+            });
+            removePurchase.modal();
+        }
+
+        function errorRemove() {
+            $('.flashmessage').removeClass('in');
+            $('.purchase_removed_error').addClass('in');
+            $('#removePurchase').modal('hide');
+        }
+    </script>
+{% endblock %}

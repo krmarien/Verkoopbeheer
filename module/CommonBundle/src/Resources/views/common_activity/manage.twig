@@ -10,13 +10,13 @@
             <p>Hier vind je een overzicht van alle activiteiten die opgenomen zijn in Verkoopbeheer.</p>
         </div>
         <div class="span9 columns">
-            <table class="table table-bordered zebra-striped">
+            <table class="table table-bordered table-striped">
                 <tr>
                     <th>Naam</th>
                     <th>Plaats</th>
-                    <th>Winst</th>
-                    <th>Datum</th>
-                    <th>Acties</th>
+                    <th width="120px">Winst</th>
+                    <th width="80px">Datum</th>
+                    <th width="140px">Acties</th>
                 </tr>
                 {% for activity in activities %}
                     <tr>
@@ -24,7 +24,7 @@
                         <td>{{ activity.getLocation() }}</td>
                         <td>&euro; {{ (activity.getGain()/100)|number_format(2) }}</td>
                         <td>{{ activity.getDate().format('d/m/Y') }}</td>
-                        <td style="padding: 5px">
+                        <td class="actions">
                             <a href="{{ url('common_activity', {'action': 'edit', 'id': activity.getId()}) }}" class="btn btn-primary">Bewerk</a>
                             <a href="{{ url('common_activity', {'action': 'view', 'id': activity.getId()}) }}" class="btn btn-info">Details</a>
                         </td>

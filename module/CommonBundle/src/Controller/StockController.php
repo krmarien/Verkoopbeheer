@@ -3,33 +3,27 @@
 namespace CommonBundle\Controller;
 
 use CommonBundle\Component\FlashMessenger\FlashMessage,
-    CommonBundle\Entity\Activity\Activity,
-    CommonBundle\Form\Activity\Add as AddForm,
-    CommonBundle\Form\Activity\Edit as EditForm,
-    DateTime,
+    CommonBundle\Entity\Stock\Item,
+    CommonBundle\Form\Stock\Item\Add as AddForm,
+    CommonBundle\Form\Stock\Item\Edit as EditForm,
     Zend\View\Model\ViewModel;
 
 /**
- * ActivityController
+ * StockController
  *
  * @author Kristof Mariën <kristof.marien@litus.cc>
  */
-class ActivityController extends \CommonBundle\Component\Controller\ActionController
+class StockController extends \CommonBundle\Component\Controller\ActionController
 {
     public function manageAction()
     {
-        $activities = $this->getEntityManager()
-            ->getRepository('CommonBundle\Entity\Activity\Activity')
+        $items = $this->getEntityManager()
+            ->getRepository('CommonBundle\Entity\Stock\Item')
             ->findAll();
-
-        $total = 0;
-        foreach($activities as $activity)
-            $total += $activity->getGain();
 
         return new ViewModel(
             array(
-                'activities' => $activities,
-                'total' => $total,
+                'items' => $items,
             )
         );
     }
@@ -42,24 +36,22 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
             $formData = $this->getRequest()->post()->toArray();
 
             if ($form->isValid($formData)) {
-                $activity = new Activity(
-                    $formData['name'],
-                    $formData['location'],
-                    DateTime::createFromFormat('d#m#Y', $formData['date'])
+                $item = new Item(
+                    $formData['name']
                 );
-                $this->getEntityManager()->persist($activity);
+                $this->getEntityManager()->persist($item);
                 $this->getEntityManager()->flush();
 
                 $this->flashMessenger()->addMessage(
                     new FlashMessage(
                         FlashMessage::SUCCESS,
                         'Succes',
-                        'De activiteit is succesvol toegevoegd!'
+                        'Het stock item is succesvol toegevoegd!'
                     )
                 );
 
                 $this->redirect()->toRoute(
-                    'common_activity'
+                    'common_stock'
                 );
 
                 return new ViewModel();
@@ -75,18 +67,16 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
 
     public function editAction()
     {
-        if (!($activity = $this->_getActivity()))
+        if (!($item = $this->_getItem()))
             return new ViewModel();
 
-        $form = new EditForm($activity);
+        $form = new EditForm($item);
 
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->post()->toArray();
 
             if ($form->isValid($formData)) {
-                $activity->setName($formData['name'])
-                    ->setLocation($formData['location'])
-                    ->setDate(DateTime::createFromFormat('d#m#Y', $formData['date']));
+                $item->setName($formData['name']);
 
                 $this->getEntityManager()->flush();
 
@@ -94,12 +84,12 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
                     new FlashMessage(
                         FlashMessage::SUCCESS,
                         'Succes',
-                        'De activiteit is succesvol aangepast!'
+                        'Het stock item is succesvol aangepast!'
                     )
                 );
 
                 $this->redirect()->toRoute(
-                    'common_activity'
+                    'common_stock'
                 );
 
                 return new ViewModel();
@@ -115,54 +105,54 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
 
     public function viewAction()
     {
-        if (!($activity = $this->_getActivity()))
+        if (!($item = $this->_getItem()))
             return new ViewModel();
 
         return new ViewModel(
             array(
-                'activity' => $activity,
+                'item' => $item,
             )
         );
     }
 
-    public function _getActivity()
+    public function _getItem()
     {
         if (null === $this->getParam('id')) {
             $this->flashMessenger()->addMessage(
                 new FlashMessage(
                     FlashMessage::ERROR,
                     'Fout',
-                    'Er was geen id opgegeven om de activiteit te identificeren!'
+                    'Er was geen id opgegeven om het stock item te identificeren!'
                 )
             );
 
             $this->redirect()->toRoute(
-                'common_activity'
+                'common_stock'
             );
 
             return;
         }
 
-        $activity = $this->getEntityManager()
-            ->getRepository('CommonBundle\Entity\Activity\Activity')
+        $item = $this->getEntityManager()
+            ->getRepository('CommonBundle\Entity\Stock\Item')
             ->findOneById($this->getParam('id'));
 
-        if (null === $activity) {
+        if (null === $item) {
             $this->flashMessenger()->addMessage(
                 new FlashMessage(
                     FlashMessage::ERROR,
                     'Fout',
-                    'Er is geen activiteit gevonden met de opgegeven id!'
+                    'Er is geen stock item gevonden met de opgegeven id!'
                 )
             );
 
             $this->redirect()->toRoute(
-                'common_activity'
+                'common_stock'
             );
 
             return;
         }
 
-        return $activity;
+        return $item;
     }
 }
