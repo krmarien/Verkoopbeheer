@@ -15,6 +15,10 @@
 
 return array(
     'controllers' => array(
+        'install_common' => array(
+            '@common_css',
+            '@common_js',
+        ),
         'common_activity' => array(
             '@common_css',
             '@common_js',
@@ -40,6 +44,14 @@ return array(
             '@common_js',
         ),
         'common_stock_sale' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_counting' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_counting_register' => array(
             '@common_css',
             '@common_js',
         ),

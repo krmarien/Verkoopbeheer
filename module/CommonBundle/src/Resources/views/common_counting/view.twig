@@ -1,0 +1,106 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="flashmessage alert alert-success register_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De kassa is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger register_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de kassa.</p>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1>Telling Overzicht <small>een overzicht van de telling van <em>{{ counting.getDescription() }}</em></small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3 columns">
+            <p>Hier vind je een overzicht van een telling.</p>
+            <a href="{{ url('common_activity', {'action': 'view', 'id': activity.getId()}) }}" class="btn">Terug</a>
+        </div>
+        <div class="span9 columns">
+            <h2>Kassa's</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Naam</th>
+                    <th>Bedrag</th>
+                    <th width="230px">Acties</th>
+                </tr>
+                {% for register in counting.getRegisters() %}
+                    <tr class="register">
+                        <td>{{ register.getName() }}</td>
+                        <td>&euro; {{ (register.getValue()/100)|number_format(2) }}</td>
+                        <td class="actions">
+                            <a href="{{ url('common_counting_register', {'action': 'view', 'id': register.getId()}) }}" class="btn btn-info">Info</a>
+                            <a href="{{ url('common_counting_register', {'action': 'edit', 'id': register.getId()}) }}" class="btn btn-primary">Bewerken</a>
+                            <a href="#" class="btn btn-danger delete" data-id="{{ register.getId() }}" data-name="{{ register.getName() }}">Verwijder</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ url('common_counting_register', {'action': 'add', 'id': counting.getId()}) }}" class="btn btn-success">Toevoegen</a>
+        </div>
+    </div>
+
+    <div id="removeRegister" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Kassa</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de volgende kassa te verwijderen: <b class="name"></b>.
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block controller_script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.register .delete').click(openModalRegister);
+        });
+
+        function openModalRegister(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removeRegister = $('#removeRegister');
+            removeRegister.find('.name').html($(this).data('name'));
+            removeRegister.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_counting_register', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.register_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removeRegister.modal('hide');
+                    } else {
+                        errorRemoveRegister();
+                    }
+                }, 'json').error(errorRemoveRegister);
+            });
+            removeRegister.modal();
+        }
+
+        function errorRemoveRegister() {
+            $('.flashmessage').removeClass('in');
+            $('.register_removed_error').addClass('in');
+            $('#removeRegister').modal('hide');
+        }
+    </script>
+{% endblock %}

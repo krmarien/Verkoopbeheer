@@ -34,7 +34,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
 
 	/**
      * Execute the request
-     * 
+     *
      * @param \Zend\Mvc\MvcEvent $e The MVC event
      * @return array
      * @throws \CommonBundle\Component\Controller\Exception\HasNoAccessException The user does not have permissions to access this resource
@@ -47,17 +47,20 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
 
         $this->_initControllerPlugins();
         $this->_initViewHelpers();
-  		
-  		
+        \Zend\Registry::set('Zend_Locale', 'nl');
+        $translator = new \Zend\Translator\Translator('ArrayAdapter', 'vendor/ZendFramework/resources/languages/nl/Zend_Validate.php', 'nl');
+        \Zend\Registry::set('Zend_Translator', $translator);
+
 		$result = parent::execute($e);
-		
+
         $result->flashMessenger = $this->flashMessenger();
-        
+
+
         $result->now = array(
   			'iso8601' => date('c', time()),
   			'display' => date('l, F j Y, H:i', time())
   		);
-  		
+
   		$result->environment = getenv('APPLICATION_ENV');
   		$result->developmentInformation = array(
   			'executionTime' => round(microtime(true) - $startExecutionTime, 3) * 1000,
@@ -66,7 +69,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
 
         $result->matchedRouteName = $this->getEvent()->getRouteMatch()->getMatchedRouteName();
         $result->setTerminal(true);
-        
+
         $e->setResult($result);
         return $result;
     }
@@ -78,7 +81,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
      * @throws \CommonBundle\Component\Controller\Request\Exception\NoXmlHttpRequestException The method was not accessed by a XHR request
      */
     protected function initAjax()
-    {        
+    {
         if (
         	!$this->getRequest()->headers()->get('X_REQUESTED_WITH')
         	|| 'XMLHttpRequest' != $this->getRequest()->headers()->get('X_REQUESTED_WITH')->getFieldValue()
@@ -88,7 +91,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
             );
         }
     }
-    
+
     /**
      * Initializes our custom view helpers.
      *
@@ -98,8 +101,8 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
     {
     	$renderer = $this->getLocator()->get('Zend\View\Renderer\PhpRenderer');
     	$renderer->plugin('url')->setRouter($this->getLocator()->get('Zend\Mvc\Router\RouteStack'));
-    	
-    	
+
+
     	// GetParam View Helper
     	$renderer->getBroker()->getClassLoader()->registerPlugin(
     		'getparam', 'CommonBundle\Component\View\Helper\GetParam'

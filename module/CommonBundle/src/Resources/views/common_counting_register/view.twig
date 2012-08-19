@@ -1,0 +1,30 @@
+{% extends 'common/layout.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Detail Kassa <small>een overzicht van de kassa <em>{{ register.getName() }}</em></small></h1>
+    </div>
+
+    <div class="row">
+        <div class="span3 columns">
+            <p>Hier vind je een overzicht van een kassa.</p>
+            <a href="{{ url('common_counting', {'action': 'view', 'id': counting.getId()}) }}" class="btn">Terug</a>
+        </div>
+        <div class="span9 columns">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th style="text-align:right;">Eenheid</th>
+                    <th style="text-align:center;">Aantal</th>
+                    <th style="text-align:left;">Bedrag</th>
+                </tr>
+                {% for number in register.getNumberMoneyUnits() %}
+                    <tr>
+                        <td style="text-align:right;">&euro; {{ (number.getUnit().getValue()/100)|number_format(2) }}</td>
+                        <td style="text-align:center;">{{ number.getNumber() }}</td>
+                        <td style="text-align:left;">&euro; {{ (number.getValue()/100)|number_format(2) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

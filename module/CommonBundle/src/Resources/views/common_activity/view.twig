@@ -43,6 +43,20 @@
             <p>Er is een fout opgetreden tijdens het verwijderen van de uitgave.</p>
         </div>
     </div>
+    <div class="flashmessage alert alert-success counting_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De telling is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger counting_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de telling.</p>
+        </div>
+    </div>
 
     <div class="page-header">
         <h1>Detail {{ activity.getName() }} <small> <small>overzicht van de activiteit op {{ activity.getDate().format('d/m/Y') }}</small></h1>
@@ -81,21 +95,22 @@
                     <th>Omschrijving</th>
                     <th>Bedrag</th>
                     <th>Datum</th>
-                    <th>Acties</th>
+                    <th width="230px">Acties</th>
                 </tr>
-                <?php foreach($this->activity->getCounts() as $item): ?>
-                    <tr>
-                        <td><?= $item->getDescription(); ?></td>
-                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
-                        <td><?= $item->getDate()->format('d/m/Y H:i'); ?></td>
+                {% for counting in activity.getCountings() %}
+                    <tr class="counting">
+                        <td>{{ counting.getDescription() }}</td>
+                        <td>&euro; {{ (counting.getValue()/100)|number_format(2) }}</td>
+                        <td>{{ counting.getTimestamp().format('d/m/Y H:i') }}</td>
                         <td class="actions">
-                            <a href="<?= $this->baseurl('/count/overview/count/'.$item->getId()); ?>" class="btn small primary">Bekijk</a>
-                            <a href="<?= $this->baseurl('/count/delete/count/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                            <a href="{{ url('common_counting', {'action': 'edit', 'id': counting.getId()}) }}" class="btn btn-primary">Bewerk</a>
+                            <a href="{{ url('common_counting', {'action': 'view', 'id': counting.getId()}) }}" class="btn btn-info">Details</a>
+                            <a href="#" class="btn btn-danger delete" data-id="{{ counting.getId() }}" data-description="{{ counting.getDescription() }}">Verwijder</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                {% endfor %}
             </table>
-            <a href="<?= $this->baseurl('/count/add/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
+            <a href="{{ url('common_counting', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-success">Toevoegen</a>
 
             <h3>Inkomsten</h3>
             <table class="table table-bordered table-striped">
@@ -212,8 +227,27 @@
             <button class="btn" data-dismiss="modal">Neen</button>
         </div>
     </div>
-{% endblock %}
 
+    <div id="removeCounting" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Telling</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de volgende telling te verwijderen: <b class="description"></b>.
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+{% endblock %}
 
 {% block controller_script %}
     <script type="text/javascript">
@@ -221,6 +255,7 @@
             $('.sale .delete').click(openModalSale);
             $('.revenue .delete').click(openModalRevenue);
             $('.expense .delete').click(openModalExpense);
+            $('.counting .delete').click(openModalCounting);
         });
 
         function openModalSale(e) {
@@ -294,7 +329,7 @@
                         $this.parent().parent().remove();
                         removeExpense.modal('hide');
                     } else {
-                        errorRemoveRevenue();
+                        errorRemoveExpense();
                     }
                 }, 'json').error(errorRemoveExpense);
             });
@@ -305,6 +340,33 @@
             $('.flashmessage').removeClass('in');
             $('.expense_removed_error').addClass('in');
             $('#removeExpense').modal('hide');
+        }
+
+        function openModalCounting(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removeCounting = $('#removeCounting');
+            removeCounting.find('.description').html($(this).data('description'));
+            removeCounting.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_counting', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.counting_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removeCounting.modal('hide');
+                    } else {
+                        errorRemoveCounting();
+                    }
+                }, 'json').error(errorRemoveCounting);
+            });
+            removeCounting.modal();
+        }
+
+        function errorRemoveCounting() {
+            $('.flashmessage').removeClass('in');
+            $('.countin_removed_error').addClass('in');
+            $('#removeCounting').modal('hide');
         }
     </script>
 {% endblock %}

@@ -55,6 +55,13 @@ class Activity
     private $saleItems;
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection The countings of the activity
+     *
+     * @OneToMany(targetEntity="CommonBundle\Entity\Counting\Counting", mappedBy="activity")
+     */
+    private $countings;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection The revenues of the activity
      *
      * @OneToMany(targetEntity="CommonBundle\Entity\Activity\Revenue", mappedBy="activity")
@@ -152,6 +159,14 @@ class Activity
     public function getSaleItems()
     {
         return $this->saleItems;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getCountings()
+    {
+        return $this->countings;
     }
 
     /**

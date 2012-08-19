@@ -19,9 +19,12 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
+                'install_common'                   => 'CommonBundle\Controller\InstallController',
                 'common_activity'                  => 'CommonBundle\Controller\ActivityController',
                 'common_activity_revenue'          => 'CommonBundle\Controller\Activity\RevenueController',
                 'common_activity_expense'          => 'CommonBundle\Controller\Activity\ExpenseController',
+                'common_counting'                  => 'CommonBundle\Controller\Counting\CountingController',
+                'common_counting_register'         => 'CommonBundle\Controller\Counting\RegisterController',
                 'common_activity_transaction_type' => 'CommonBundle\Controller\Activity\TransactionTypeController',
                 'common_stock'                     => 'CommonBundle\Controller\StockController',
                 'common_stock_purchase'            => 'CommonBundle\Controller\Stock\PurchaseController',
@@ -137,6 +140,18 @@ return array(
             'Zend\Mvc\Router\RouteStack' => array(
                 'parameters' => array(
                     'routes' => array(
+                        'install_common' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/install/common',
+                                'constraints' => array(
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'install_common',
+                                    'action'     => 'index',
+                                ),
+                            ),
+                        ),
                         'index' => array(
                             'type'    => 'Zend\Mvc\Router\Http\Segment',
                             'options' => array(
@@ -243,6 +258,34 @@ return array(
                                 ),
                                 'defaults' => array(
                                     'controller' => 'common_stock_sale',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
+                        'common_counting' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities/counting[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_counting',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
+                        'common_counting_register' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities/counting/register[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_counting_register',
                                     'action'     => 'add',
                                 ),
                             ),
