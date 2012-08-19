@@ -1,6 +1,49 @@
 {% extends 'common/layout.twig' %}
 
 {% block content %}
+    <div class="flashmessage alert alert-success sale_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De verkoop is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger sale_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de verkoop.</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-success revenue_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De inkomst is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger revenue_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de inkomst.</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-success expense_removed_success fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Succes</div>
+        <div class="content">
+            <p>De uitgave is succesvol verwijderd!</p>
+        </div>
+    </div>
+    <div class="flashmessage alert alert-danger expense_removed_error fade">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <div class="title">Fout</div>
+        <div class="content">
+            <p>Er is een fout opgetreden tijdens het verwijderen van de uitgave.</p>
+        </div>
+    </div>
+
     <div class="page-header">
         <h1>Detail {{ activity.getName() }} <small> <small>overzicht van de activiteit op {{ activity.getDate().format('d/m/Y') }}</small></h1>
     </div>
@@ -17,20 +60,21 @@
                     <th>Item</th>
                     <th>Aantal</th>
                     <th>Totale kostprijs</th>
-                    <th>Acties</th>
+                    <th width="80px">Acties</th>
                 </tr>
                 {% for item in activity.getSaleItems() %}
-                    <tr>
+                    <tr class="sale">
                         <td>{{ item.getItem().getName() }}</td>
                         <td>{{ item.getNumber() }}</td>
                         <td>&euro; {{ (item.getPrice()/100)|number_format(2) }}</td>
                         <td class="actions">
-                            <a href="<?= $this->baseurl('/activity/deletesale/sale/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                            <a href="#" class="btn btn-danger delete" data-id="{{ item.getId() }}" data-name="{{ item.getItem().getName() }}" data-number="{{ item.getNumber() }}">Verwijder</a>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
-            <a href="<?= $this->baseurl('/activity/addsale/activity/'.$this->activity->getId()); ?>" class="btn btn-success">Toevoegen</a>
+            <a href="{{ url('common_stock_sale', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-success">Toevoegen</a>
+
             <h3>Geldtelling</h3>
             <table class="table table-bordered table-striped">
                 <tr>
@@ -52,58 +96,215 @@
                 <?php endforeach; ?>
             </table>
             <a href="<?= $this->baseurl('/count/add/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
+
             <h3>Inkomsten</h3>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Type</th>
                     <th>Omschrijving</th>
                     <th>Bedrag</th>
-                    <th>Acties</th>
+                    <th width="180px">Acties</th>
                 </tr>
-                <?php foreach($this->activity->getIncomes() as $item): ?>
-                    <tr>
-                        <td><?= $item->getType()->getName(); ?></td>
-                        <td><?= $item->getDescription(); ?></td>
-                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
+                {% for revenue in activity.getRevenues() %}
+                    <tr class="revenue">
+                        <td>{{ revenue.getTransactionType().getName() }}</td>
+                        <td>{{ revenue.getDescription() }}</td>
+                        <td>&euro; {{ (revenue.getValue()/100)|number_format(2) }}</td>
                         <td class="actions">
-                            <a href="<?= $this->baseurl('/activity/editincome/income/'.$item->getId()); ?>" class="btn small primary">Bewerk</a>
-                            <a href="<?= $this->baseurl('/activity/deleteincome/income/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                            <a href="{{ url('common_activity_revenue', {'action': 'edit', 'id': revenue.getId()}) }}" class="btn btn-primary">Bewerk</a>
+                            <a href="#" class="btn btn-danger delete" data-id="{{ revenue.getId() }}" data-description="{{ revenue.getDescription() }}" data-value="&euro; {{ (revenue.getValue()/100)|number_format(2) }}">Verwijder</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                {% endfor %}
             </table>
-            <a href="<?= $this->baseurl('/activity/addincome/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
-            <a href="<?= $this->baseurl('/activity/addflowtype/activity/'.$this->activity->getId()); ?>" class="btn small info">Type toevoegen</a>
+            <a href="{{ url('common_activity_revenue', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-success">Toevoegen</a>
+            <a href="{{ url('common_activity_transaction_type', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-info">Type toevoegen</a>
+
             <h3>Uitgaven</h3>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Type</th>
                     <th>Omschrijving</th>
                     <th>Bedrag</th>
-                    <th>Acties</th>
+                    <th width="180px">Acties</th>
                 </tr>
-                <?php if ($this->activity->getTotalSales() > 0): ?>
+                {% if activity.getTotalSales() > 0 %}
                     <tr>
                         <td>Verkochte drank</td>
                         <td>De totale kostprijs van verkochte drank</td>
-                        <td>&euro; <?= number_format($this->activity->getTotalSales(), 2); ?></td>
+                        <td>&euro; {{ (activity.getTotalSales()/100)|number_format(2) }}</td>
                         <td></td>
                     </tr>
-                <?php endif; ?>
-                <?php foreach($this->activity->getExpenses() as $item): ?>
-                    <tr>
-                        <td><?= $item->getType()->getName(); ?></td>
-                        <td><?= $item->getDescription(); ?></td>
-                        <td>&euro; <?= number_format($item->getAmount(), 2); ?></td>
+                {% endif %}
+                {% for expense in activity.getExpenses() %}
+                    <tr class="expense">
+                        <td>{{ expense.getTransactionType().getName() }}</td>
+                        <td>{{ expense.getDescription() }}</td>
+                        <td>&euro; {{ (expense.getValue()/100)|number_format(2) }}</td>
                         <td class="actions">
-                            <a href="<?= $this->baseurl('/activity/editexpense/expense/'.$item->getId()); ?>" class="btn small primary">Bewerk</a>
-                            <a href="<?= $this->baseurl('/activity/deleteexpense/expense/'.$item->getId()); ?>" class="btn small error">Verwijder</a>
+                            <a href="{{ url('common_activity_expense', {'action': 'edit', 'id': expense.getId()}) }}" class="btn btn-primary">Bewerk</a>
+                            <a href="#" class="btn btn-danger delete" data-id="{{ expense.getId() }}" data-description="{{ expense.getDescription() }}" data-value="&euro; {{ (expense.getValue()/100)|number_format(2) }}">Verwijder</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                {% endfor %}
             </table>
-            <a href="<?= $this->baseurl('/activity/addexpense/activity/'.$this->activity->getId()); ?>" class="btn small success">Toevoegen</a>
-            <a href="<?= $this->baseurl('/activity/addflowtype/activity/'.$this->activity->getId()); ?>" class="btn small info">Type toevoegen</a>
+            <a href="{{ url('common_activity_expense', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-success">Toevoegen</a>
+            <a href="{{ url('common_activity_transaction_type', {'action': 'add', 'id': activity.getId()}) }}" class="btn btn-info">Type toevoegen</a>
        </div>
     </div>
+
+    <div id="removeSale" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Verkoop</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de verkoop van <b class="name"></b> (<span class="number"></span> stuks) te verwijderen?
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+
+    <div id="removeRevenue" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Inkomst</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de volgende inkomst te verwijderen: <b class="description"></b> (<span class="value"></span>).
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+
+    <div id="removeExpense" class="modal fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Verwijder Uitgave</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Je staat op het punt om de volgende uitgave te verwijderen: <b class="description"></b> (<span class="value"></span>).
+                Deze operatie kan niet ongedaan gemaakt worden!
+            </p>
+            <p>
+                Ben je zeker dat je wil verder gaan?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger delete">Ja</button>
+            <button class="btn" data-dismiss="modal">Neen</button>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block controller_script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.sale .delete').click(openModalSale);
+            $('.revenue .delete').click(openModalRevenue);
+            $('.expense .delete').click(openModalExpense);
+        });
+
+        function openModalSale(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removeSale = $('#removeSale');
+            removeSale.find('.name').html($(this).data('name'));
+            removeSale.find('.number').html($(this).data('number'));
+            removeSale.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_stock_sale', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.sale_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removeSale.modal('hide');
+                    } else {
+                        errorRemoveSale();
+                    }
+                }, 'json').error(errorRemoveSale);
+            });
+            removeSale.modal();
+        }
+
+        function errorRemoveSale() {
+            $('.flashmessage').removeClass('in');
+            $('.sale_removed_error').addClass('in');
+            $('#removeSale').modal('hide');
+        }
+
+        function openModalRevenue(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removeRevenue = $('#removeRevenue');
+            removeRevenue.find('.description').html($(this).data('description'));
+            removeRevenue.find('.value').html($(this).data('value'));
+            removeRevenue.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_activity_revenue', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.revenue_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removeRevenue.modal('hide');
+                    } else {
+                        errorRemoveRevenue();
+                    }
+                }, 'json').error(errorRemoveRevenue);
+            });
+            removeRevenue.modal();
+        }
+
+        function errorRemoveRevenue() {
+            $('.flashmessage').removeClass('in');
+            $('.revenue_removed_error').addClass('in');
+            $('#removeRevenue').modal('hide');
+        }
+
+        function openModalExpense(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+            var removeExpense = $('#removeExpense');
+            removeExpense.find('.description').html($(this).data('description'));
+            removeExpense.find('.value').html($(this).data('value'));
+            removeExpense.find('.delete').unbind('click').click(function () {
+                $.post('{{ url('common_activity_expense', {"action": "delete"})}}/' + $this.data('id'), function  (data) {
+                    if (data && 'success' == data.status) {
+                        $('.flashmessage').removeClass('in');
+                        $('.expense_removed_success').addClass('in');
+                        $this.parent().parent().remove();
+                        removeExpense.modal('hide');
+                    } else {
+                        errorRemoveRevenue();
+                    }
+                }, 'json').error(errorRemoveExpense);
+            });
+            removeExpense.modal();
+        }
+
+        function errorRemoveExpense() {
+            $('.flashmessage').removeClass('in');
+            $('.expense_removed_error').addClass('in');
+            $('#removeExpense').modal('hide');
+        }
+    </script>
 {% endblock %}

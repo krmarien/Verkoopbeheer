@@ -19,6 +19,18 @@ return array(
             '@common_css',
             '@common_js',
         ),
+        'common_activity_revenue' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_activity_expense' => array(
+            '@common_css',
+            '@common_js',
+        ),
+        'common_activity_transaction_type' => array(
+            '@common_css',
+            '@common_js',
+        ),
         'common_stock' => array(
             '@common_css',
             '@common_js',

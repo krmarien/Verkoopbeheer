@@ -19,9 +19,13 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
-                'common_activity'       => 'CommonBundle\Controller\ActivityController',
-                'common_stock'          => 'CommonBundle\Controller\StockController',
-                'common_stock_purchase' => 'CommonBundle\Controller\Stock\PurchaseController',
+                'common_activity'                  => 'CommonBundle\Controller\ActivityController',
+                'common_activity_revenue'          => 'CommonBundle\Controller\Activity\RevenueController',
+                'common_activity_expense'          => 'CommonBundle\Controller\Activity\ExpenseController',
+                'common_activity_transaction_type' => 'CommonBundle\Controller\Activity\TransactionTypeController',
+                'common_stock'                     => 'CommonBundle\Controller\StockController',
+                'common_stock_purchase'            => 'CommonBundle\Controller\Stock\PurchaseController',
+                'common_stock_sale'                => 'CommonBundle\Controller\Stock\SaleController',
             ),
             'assetic_configuration' => array(
                 'parameters' => array(
@@ -45,6 +49,7 @@ return array(
                                     'common_css' => array(
                                         'assets'  => array(
                                             'common/css/bootstrap.min.css',
+                                            'common/css/bootstrap-responsive.css',
                                             'common/css/admin.css',
                                         ),
                                         'options' => array(
@@ -158,6 +163,48 @@ return array(
                                 ),
                             ),
                         ),
+                        'common_activity_revenue' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities/revenue[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_activity_revenue',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
+                        'common_activity_expense' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities/expense[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_activity_expense',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
+                        'common_activity_transaction_type' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/activities/transaction_type[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_activity_transaction_type',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
                         'common_stock' => array(
                             'type'    => 'Zend\Mvc\Router\Http\Segment',
                             'options' => array(
@@ -175,14 +222,28 @@ return array(
                         'common_stock_purchase' => array(
                             'type'    => 'Zend\Mvc\Router\Http\Segment',
                             'options' => array(
-                                'route'    => '/stock/purchase[/:action[/:id]]',
+                                'route'    => '/stock/purchases[/:action[/:id]]',
                                 'constraints' => array(
                                     'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
                                     'id'      => '[a-zA-Z0-9_-]*',
                                 ),
                                 'defaults' => array(
                                     'controller' => 'common_stock_purchase',
-                                    'action'     => 'manage',
+                                    'action'     => 'add',
+                                ),
+                            ),
+                        ),
+                        'common_stock_sale' => array(
+                            'type'    => 'Zend\Mvc\Router\Http\Segment',
+                            'options' => array(
+                                'route'    => '/stock/sales[/:action[/:id]]',
+                                'constraints' => array(
+                                    'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    'id'      => '[a-zA-Z0-9_-]*',
+                                ),
+                                'defaults' => array(
+                                    'controller' => 'common_stock_sale',
+                                    'action'     => 'add',
                                 ),
                             ),
                         ),

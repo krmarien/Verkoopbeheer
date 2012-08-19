@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class Item extends EntityRepository
 {
+    public function findAll()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $resultSet = $query->select('i')
+            ->from('CommonBundle\Entity\Stock\Item', 'i')
+            ->orderBy('i.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $resultSet;
+    }
 }

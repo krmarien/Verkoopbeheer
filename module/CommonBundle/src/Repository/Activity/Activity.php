@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class Activity extends EntityRepository
 {
+    public function findAll()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $resultSet = $query->select('a')
+            ->from('CommonBundle\Entity\Activity\Activity', 'a')
+            ->orderBy('a.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $resultSet;
+    }
 }

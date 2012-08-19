@@ -2,29 +2,30 @@
 <html lang="en">
     <head>
     	{{ headTitle('Residentie Groenveld - Verkoopbeheer', 'PREPEND') }}
-    	
-    	{{ headMeta() }}        
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    	{{ headMeta() }}
     	{{ headLink() }}
     	{{ headScript() }}
     </head>
-    
+
     <body>
         <nav class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
         			<a href="{{ url("common_activity") }}" class="brand"><img src="/_common/img/logo_white.png" alt="" /></a>
         			<ul class="nav">
-        			    <li {% if 'common_activity' == getParam('controller') %}class="active"{% endif %}>
+        			    <li {% if 'common_activity' == getParam('controller') or 'common_activity_expense' == getParam('controller') or 'common_activity_revenue' == getParam('controller') or 'common_activity_transaction_type' == getParam('controller') or 'common_stock_sale' == getParam('controller') %}class="active"{% endif %}>
         				    <a href="{{ url("common_activity") }}">Activiteiten</a>
         				</li>
-                        <li {% if 'common_stock' == getParam('controller') %}class="active"{% endif %}>
+                        <li {% if 'common_stock' == getParam('controller') or 'common_stock_purchase' == getParam('controller') %}class="active"{% endif %}>
                             <a href="{{ url("common_stock") }}">Stock</a>
                         </li>
         			</ul>
         		</div>
         	</div>
         </nav>
-        
+
         <header>
         	<div class="inner">
         		<div class="container">
@@ -32,13 +33,13 @@
         		</div>
         	</div>
         </header>
-        
+
         <div class="container">
             {% include 'common/partials/flashMessenger.twig' %}
-            
+
         	{% block content %} {% endblock %}
         </div>
-        
+
         {% if 'development' == environment %}
            <div class="container" style="text-align: right;">
                 <span class="development_information">
@@ -46,9 +47,9 @@
                 </span>
             </div>
         {% endif %}
-        
+
         {{ inlineScript() }}
-        
+
         {% block controller_script %} {% endblock %}
     </body>
 </html>

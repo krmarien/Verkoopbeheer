@@ -53,7 +53,7 @@ class Expense
      * @param string $description The description of the expense
      * @param integer $value The value of the expense
      */
-    public function __construct(Activity $activity, $transactionType, $description, $value)
+    public function __construct(Activity $activity, TransactionType $transactionType, $description, $value)
     {
         $this->activity = $activity;
         $this->transactionType = $transactionType;
@@ -120,7 +120,7 @@ class Expense
      */
     public function getValue()
     {
-        return $this->value/100;
+        return $this->value;
     }
 
     /**

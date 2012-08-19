@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class TransactionType extends EntityRepository
 {
+    public function findAll()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $resultSet = $query->select('t')
+            ->from('CommonBundle\Entity\Activity\TransactionType', 't')
+            ->orderBy('t.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $resultSet;
+    }
 }

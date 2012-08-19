@@ -53,7 +53,7 @@ class Revenue
      * @param string $description The description of the revenue
      * @param integer $value The value of the revenue
      */
-    public function __construct(Activity $activity, $transactionType, $description, $value)
+    public function __construct(Activity $activity, TransactionType $transactionType, $description, $value)
     {
         $this->activity = $activity;
         $this->transactionType = $transactionType;
@@ -120,7 +120,7 @@ class Revenue
      */
     public function getValue()
     {
-        return $this->value/100;
+        return $this->value;
     }
 
     /**

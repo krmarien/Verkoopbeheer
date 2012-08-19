@@ -12,43 +12,43 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Component\Validator;
 
 use Doctrine\ORM\EntityManager;
 
 /**
- * Matches the given username against the database to check whether it is
+ * Matches the given cash register name against the database to check whether it is
  * unique or not.
  *
  * @author Kristof Mariën <kristof.marien@litus.cc>
  */
-class Username extends \Zend\Validator\AbstractValidator
+class TransactionTypeName extends \Zend\Validator\AbstractValidator
 {
     const NOT_VALID = 'notValid';
 
-	/**
-	 * @var \Doctrine\ORM\EntityManager The EntityManager instance
-	 */
-	private $_entityManager = null;
+    /**
+     * @var \Doctrine\ORM\EntityManager The EntityManager instance
+     */
+    private $_entityManager = null;
 
     /**
      * @var array The error messages
      */
     protected $_messageTemplates = array(
-        self::NOT_VALID => 'The username already exists'
+        self::NOT_VALID => 'Het transactie type naam bestaat reeds'
     );
 
-	/**
-	 * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-	 * @param mixed $opts The validator's options
-	 */
-	public function __construct(EntityManager $entityManager, $opts = null)
-	{
-		parent::__construct($opts);
-		
-		$this->_entityManager = $entityManager;
-	}
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
+     * @param mixed $opts The validator's options
+     */
+    public function __construct(EntityManager $entityManager, $opts = null)
+    {
+        parent::__construct($opts);
+
+        $this->_entityManager = $entityManager;
+    }
 
     /**
      * Returns true if no matching record is found in the database.
@@ -61,15 +61,15 @@ class Username extends \Zend\Validator\AbstractValidator
     {
         $this->setValue($value);
 
-		$person = $this->_entityManager
-			->getRepository('CommonBundle\Entity\Users\Person')
-			->findOneByUsername($value);
-		
-        if (null === $person)
+        $transactionType = $this->_entityManager
+            ->getRepository('CommonBundle\Entity\Activity\TransactionType')
+            ->findOneByName($value);
+
+        if (null === $transactionType)
             return true;
 
         $this->error(self::NOT_VALID);
-        
+
         return false;
     }
 }
