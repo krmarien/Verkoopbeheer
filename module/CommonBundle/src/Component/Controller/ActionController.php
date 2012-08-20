@@ -12,7 +12,7 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Component\Controller;
 
 use Zend\Mvc\MvcEvent,
@@ -110,13 +110,13 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
     	$renderer->plugin('getParam')->setRouteMatch(
     		$this->getEvent()->getRouteMatch()
     	);
-    	
+
     	// Date View Helper
     	$renderer->getBroker()->getClassLoader()->registerPlugin(
     		'dateLocalized', 'CommonBundle\Component\View\Helper\DateLocalized'
     	);
     }
-    
+
     /**
      * Initializes our custom controller plugins.
      *
@@ -140,10 +140,10 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
     {
         return $this->getLocator()->get('doctrine_em');
     }
-    
+
     /**
-     * Gets a parameter from a GET request.  
-     * 
+     * Gets a parameter from a GET request.
+     *
      * @param string $param The parameter's key
      * @param mixed $default The default value, returned when the parameter is not found
      * @return string

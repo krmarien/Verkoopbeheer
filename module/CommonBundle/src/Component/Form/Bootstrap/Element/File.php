@@ -12,7 +12,7 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Component\Form\Bootstrap\Element;
 
 use CommonBundle\Component\Form\Bootstrap\Decorator\Errors;
@@ -24,7 +24,7 @@ use CommonBundle\Component\Form\Bootstrap\Decorator\Errors;
  */
 class File extends \Zend\Form\Element\File
 {
-	
+
 	/**
      * Load default decorators
      *
@@ -44,7 +44,7 @@ class File extends \Zend\Form\Element\File
                  ->addDecorator('Description', array('tag' => 'p', 'class' => 'description'))
                  ->addDecorator('HtmlTag', array('tag' => 'dd'))
                  ->addDecorator('Label', array('tag' => 'dt'));*/
-             
+
              $this->addDecorator('File')
                  ->addDecorator(new Errors())
                  ->addDecorator('Description', array('tag' => 'span', 'class' => 'help-block'))

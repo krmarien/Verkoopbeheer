@@ -2,10 +2,10 @@
 return array(
     'Residence' => 'Residentie',
     'Groenveld' => 'Groenveld',
-    
+
     // Navigation
 	'Home' => 'Start',
-	
+
 	'Content' => 'Inhoud',
 	'Pages' => 'Pagina\'s',
 	'News' => 'Nieuws',
@@ -14,26 +14,26 @@ return array(
 	'Gallery' => 'Gallerij',
 	'Opening Hours' => 'Openingsuren',
 	'Calendar' => 'Kalender',
-	
+
 	'Reservations' => 'Reservaties',
 	'BBQ' => 'BBQ',
 	'GV-Room' => 'GV-Zaaltje',
-	
+
 	'Bread' => 'Brood',
 	'Breads' => 'Broden',
 	'Preorders' => 'Voorbestellingen',
 	'Orders' => 'Bestellingen',
 	'Bill' => 'Rekening',
-	
+
 	'Extra' => 'Extra',
 	'Tasks' => 'Takenlijsten',
 	'Polls' => 'Stemformulieren',
 	'Mailinglists' => 'Mailinglijsten',
-	
+
 	'Residents' => 'Bewoners',
 	'Import' => 'Importeren',
 	'Rooms' => 'Kamers',
-	
+
 	'Admin' => 'Beheer',
 	'Logs' => 'Logs',
 	'Users' => 'Gebruikers',
@@ -41,15 +41,15 @@ return array(
 	'Navigation' => 'Navigatie',
 	'URL' => 'URL',
 	'Configuration' => 'Configuratie',
-	
+
 	'Login' => 'Aanmelden',
 	'Logout' => 'Afmelden',
-	
+
 	'Info' => 'Info',
 	'Success' => 'Succes',
 	'Warning' => 'Waarschuwing',
 	'Error' => 'Fout',
-	
+
 	// Auth
 	'Username' => 'Gebruikersnaam',
 	'Password' => 'Wachtwoord',
@@ -58,9 +58,9 @@ return array(
 	'You are succesfully logged in!' => 'Je bent succesvol aangemeld!',
 	'You cannot be logged in!' => 'Je kan niet aangemeld worden!',
 	'You are successfully logged out!' => 'Je bent succesvol afgemeld!',
-	
+
 	// DashBoard
-	
+
 	// Log
 	'Logs' => 'Logs',
 	'Last' => 'Laatste',
@@ -79,9 +79,9 @@ return array(
 	'No log with the given id was found!' => 'Er is geen log gevonden met de opgeven id!',
 	'No name was given to identify the log type!' => 'Er was geen naam opgeven om het log type te identificeren!',
 	'No log type with the given name was found!' => 'Er is geen log type gevonden met de opgeven naam!',
-	
+
 	// Nav
-	
+
 	// Role
 	'Roles' => 'Rechten',
 	'Name' => 'Naam',
@@ -106,9 +106,9 @@ return array(
 	'The role was successfully updated!' => 'Het recht is succesvol aangepast!',
 	'No name was given to identify the role!' => 'Er was geen naam opgegeven om het recht te identificeren!',
 	'No role with the given name was found!' => 'Er is geen recht gevonden met de opgegeven naam!',
-	
+
 	// Url
-	
+
 	// User
 	'Users' => 'Gebruikers',
 	'The user was successfully removed!' => 'De gebruiker is succesvol verwijderd!',
@@ -142,21 +142,21 @@ return array(
 	'The user was successfully updated!' => 'De gebruiker is succesvol aangepast!',
 	'No id was given to identify the user!' => 'Er was geen id opgegeven om de gebruiker te identificeren!',
 	'No user with the given ID was found!' => 'Er is geen gebruiker gevonden met de opgegeven id!',
-	
+
 	// Config
 	'Key' => 'Sleutel',
 	'Value' => 'Waarde',
 	'The configuration entry was successfully updated!' => 'De configuratie waarde is succesvol aangepast!',
 	'No key was given to identify the configuration entry!' => 'Er was geen sleutel opgegeven om de configuratie waarde te identificeren!',
 	'No configuration entry with the given key was found!' => 'Er is geen configuratie waarde gevonden met de opgegeven sleutel!',
-	
+
 	// Validators
 	'The given phone number is not in the international format (+CCAAANNNNNN)' => 'Het opgegeven telefoonnummer is niet in het internationale formaat (+CCAAANNNNNN)',
 	'The given price is not valid' => 'De opgegeven prijs is niet geldig',
 	'The username already exists' => 'De gebruikersnaam bestaat reeds',
 	'The username does not exists' => 'De gebruikersnaam bestaat niet',
 	'The date must be a %day%' => 'De datum moet een %day% zijn',
-    
+
     // Dashboard
 	'Welcome %user%' => 'Welkom %user%',
 	'There are some open reservations for the bbq\'s.' => 'Er zijn open reservaties voor de bbq\'s.',

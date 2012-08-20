@@ -16,7 +16,7 @@ class Module implements AutoloaderProvider
 	public function init(Manager $moduleManager)
     {
     	$this->moduleManager = $moduleManager;
-    
+
 		$events = StaticEventManager::getInstance();
 		$events->attach(
 			'bootstrap', 'bootstrap', array($this, 'initializeView')
@@ -49,12 +49,12 @@ class Module implements AutoloaderProvider
         $locator = $app->getLocator();
         $renderer = $locator->get('ZfTwig\TwigRenderer');
         $renderer->plugin('basePath')->setBasePath($basePath);
-    
+
         $view = $locator->get('Zend\View\View');
         $twigStrategy = $locator->get('ZfTwig\TwigRenderingStrategy');
         $view->events()->attach($twigStrategy, 100);
     }
-    
+
     public function getProvides()
     {
         return array(

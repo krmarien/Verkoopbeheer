@@ -2,7 +2,7 @@
 return array(
     'Residence' => 'Residence',
     'Groenveld' => 'Groenveld',
-        
+
     // Header
     'Vote Now' => 'Vote Now',
     'Help Us' => 'Help Us',
@@ -12,7 +12,7 @@ return array(
 	'English' => 'English',
 	'Dutch' => 'Nederlands',
 	'Students residence in Heverlee.' => 'Students residence in Heverlee.',
-	
+
 	// Auth
 	'You are succesfully logged in!' => 'You are succesfully logged in!',
 	'You cannot be logged in!' => 'You cannot be logged in!',
@@ -21,7 +21,7 @@ return array(
 	'Password' => 'Password',
 	'Remember Me' => 'Remember Me',
 	'Lost Password' => 'Lost Password',
-	
+
 	// Account
 	'Your account is succesfully activated' => 'Your account is succesfully activated',
 	'Your account is succesfully reactivated' => 'Your account is succesfully reactivated',

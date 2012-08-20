@@ -2,7 +2,7 @@
 return array(
     'Residence' => 'Residentie',
     'Groenveld' => 'Groenveld',
-    
+
     // Header
     'Vote Now' => 'Stem Nu',
     'Help Us' => 'Help Ons',
@@ -12,7 +12,7 @@ return array(
 	'English' => 'English',
 	'Dutch' => 'Nederlands',
 	'Students residence in Heverlee.' => 'Studenten residentie in Heverlee.',
-	
+
 	// Auth
 	'You are succesfully logged in!' => 'Je bent succesvol aangemeld!',
 	'You cannot be logged in!' => 'Je kan niet aangemeld worden!',
@@ -21,7 +21,7 @@ return array(
 	'Password' => 'Wachtwoord',
 	'Remember Me' => 'Onthoud mij',
 	'Lost Password' => 'Wachtwoord vergeten',
-	
+
     // Account
 	'Your account is succesfully activated' => 'Je account is succesvol geactiveerd',
 	'Your account is succesfully reactivated' => 'Je account is succesvol opnieuw geactiveerd',
@@ -55,5 +55,5 @@ return array(
 	'Save' => 'Save',
 	'Current Profile Image' => 'Huidige Profiel Foto',
 	'Change Image' => 'Wijzig Foto',
-	'Your profile image has succesfully been changed' => 'Je profiel foto is succesvol aangepast',	
+	'Your profile image has succesfully been changed' => 'Je profiel foto is succesvol aangepast',
 );

@@ -7,7 +7,7 @@ return array(
 	'Contact' => 'Contact',
 	'Extra' => 'Extra',
 	'User' => 'User',
-	
+
 	'Welcome' => 'Welcome',
 	'News' => 'News',
 	'Bread' => 'Bread',
@@ -16,7 +16,7 @@ return array(
 	'History' => 'History',
 	'GVInfo' => 'GVInfo',
 	'Duties and Rights' => 'Duties and Rights',
-	
+
 	'FAQ' => 'FAQ',
 	'Guide' => 'Guide',
 	'Visitordays' => 'Visitordays',
@@ -26,25 +26,25 @@ return array(
 	'End Rental Period' => 'End Rental Period',
 	'Reapplication' => 'Reapplication',
 	'EPC' => 'EPC',
-	
+
 	'Photo\'s' => 'Photo\'s',
 	'Calendar' => 'Calendar',
 	'Games' => 'Games',
-	
+
 	'General' => 'General',
 	'Subscribe' => 'Subscribe',
 	'Basketball' => 'Basketball',
 	'Volleyball' => 'Volleyball',
 	'Football' => 'Football',
-	
+
 	'Permanence' => 'Permanence',
 	'Map' => 'Map',
 	'Contact Form' => 'Contact Form',
 	'Residents' => 'Residents',
-	
+
 	'BBQ Lending' => 'BBQ Lending',
 	'Works IMEC' => 'Works IMEC',
-	
+
 	'Bread' => 'Bread',
 	'Residents' => 'Residents',
 	'Complaints' => 'Complaints',

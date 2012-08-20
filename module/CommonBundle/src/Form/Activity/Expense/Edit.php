@@ -12,7 +12,7 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Form\Activity\Expense;
 
 use CommonBundle\Component\Form\Bootstrap\Element\Submit,

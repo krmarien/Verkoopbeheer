@@ -12,7 +12,7 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Component\Controller\ActionController;
 
 use CommonBundle\Entity\General\Config,

@@ -7,7 +7,7 @@ return array(
 	'Contact' => 'Contact',
 	'Extra' => 'Extra',
 	'User' => 'Gebruiker',
-	
+
 	'Welcome' => 'Welkom',
 	'News' => 'Nieuws',
 	'Bread' => 'Brood',
@@ -16,7 +16,7 @@ return array(
 	'History' => 'Geschiedenis',
 	'GVInfo' => 'GVInfo',
 	'Duties and Rights' => 'Plichten en Rechten',
-	
+
 	'FAQ' => 'FAQ',
 	'Guide' => 'Wegwijs',
 	'Visitordays' => 'Bezoekdagen',
@@ -26,25 +26,25 @@ return array(
 	'End Rental Period' => 'Einde Huurperiode',
 	'Reapplication' => 'Heraanvraag',
 	'EPC' => 'EPC',
-	
+
 	'Photo\'s' => 'Foto\'s',
 	'Calendar' => 'Kalender',
 	'Games' => 'Spelotheek',
-	
+
 	'General' => 'Algemeen',
 	'Subscribe' => 'Inschrijven',
 	'Basketball' => 'Basketbal',
 	'Volleyball' => 'Volleybal',
 	'Football' => 'Voetbal',
-	
+
 	'Permanence' => 'Permanentie',
 	'Map' => 'Kaart',
 	'Contact Form' => 'Contact Formulier',
 	'Residents' => 'Bewoners',
-	
+
 	'BBQ Lending' => 'BBQ Uitleendienst',
 	'Works IMEC' => 'Werken IMEC',
-	
+
 	'Bread' => 'Brood',
 	'Residents' => 'Bewoners',
 	'Complaints' => 'Klachten',

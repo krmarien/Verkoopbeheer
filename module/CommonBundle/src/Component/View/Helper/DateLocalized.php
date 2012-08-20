@@ -12,7 +12,7 @@
  *
  * @license http://litus.cc/LICENSE
  */
- 
+
 namespace CommonBundle\Component\View\Helper;
 
 use DateTime,
@@ -24,18 +24,18 @@ use DateTime,
  * @author Kristof Mariën <kristof.marien@litus.cc>
  */
 class DateLocalized extends \Zend\View\Helper\AbstractHelper
-{	
+{
 	/**
 	 * @param \DateTime $date
 	 * @param string $format
-	 * 
+	 *
 	 * @return Zend\Date\Date
 	 */
 	public function __invoke(DateTime $date = null, $format = '')
 	{
 	    if (null == $date)
 	        return '';
-	    
+
 		$date = new Zend_Date($date->format('Y/m/d H:i:s'), 'y/M/d H:m:s');
 		return $date->toString($format);
 	}
