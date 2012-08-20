@@ -3,58 +3,59 @@
 namespace CommonBundle\Entity\Stock;
 
 use CommonBundle\Entity\Activity\Activity,
-    DateTime;
+    DateTime,
+    Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Stock\Sale")
- * @Table(name="sale_admin.stock_sale")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Stock\Sale")
+ * @ORM\Table(name="sale_admin.stock_sale")
  */
 class Sale
 {
     /**
      * @var integer The ID of the sale
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \CommonBundle\Entity\Stock\Item The stock item of the sale
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Stock\Item", inversedBy="sales")
-     * @JoinColumn(name="item", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Stock\Item", inversedBy="sales")
+     * @ORM\JoinColumn(name="item", referencedColumnName="id")
      */
     private $item;
 
     /**
      * @var CommonBundle\Entity\Activity\Activity The activity of the sale
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="saleItems")
-     * @JoinColumn(name="activity", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="saleItems")
+     * @ORM\JoinColumn(name="activity", referencedColumnName="id")
      */
     private $activity;
 
     /**
      * @var \CommonBundle\Entity\Stock\Purchase The purchase of the sale
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Stock\Purchase", inversedBy="sales")
-     * @JoinColumn(name="purchase", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Stock\Purchase", inversedBy="sales")
+     * @ORM\JoinColumn(name="purchase", referencedColumnName="id")
      */
     private $purchase;
 
     /**
      * @var integer The number of the sale
      *
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $number;
 
     /**
      * @var \DateTime The creation date of the sale
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 

@@ -2,76 +2,77 @@
 
 namespace CommonBundle\Entity\Activity;
 
-use DateTime;
+use DateTime,
+    Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Activity\Activity")
- * @Table(name="sale_admin.activity")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Activity\Activity")
+ * @ORM\Table(name="sale_admin.activity")
  */
 class Activity
 {
     /**
      * @var integer The ID of the activity
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string The name of the activity
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var string The location of the activity
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $location;
 
     /**
      * @var \DateTime The data of the activity
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var string The creation date of the activity
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The sale items of the activity
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Stock\Sale", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Stock\Sale", mappedBy="activity")
      */
     private $saleItems;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The countings of the activity
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Counting\Counting", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Counting\Counting", mappedBy="activity")
      */
     private $countings;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The revenues of the activity
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Activity\Revenue", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Activity\Revenue", mappedBy="activity")
      */
     private $revenues;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The expenses of the activity
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Activity\Expense", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Activity\Expense", mappedBy="activity")
      */
     private $expenses;
 

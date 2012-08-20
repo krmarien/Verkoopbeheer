@@ -3,49 +3,50 @@
 namespace CommonBundle\Entity\Counting;
 
 use CommonBundle\Entity\Activity\Activity,
-    DateTime;
+    DateTime,
+    Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Counting\Counting")
- * @Table(name="sale_admin.counting")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Counting\Counting")
+ * @ORM\Table(name="sale_admin.counting")
  */
 class Counting
 {
     /**
      * @var integer The ID of the counting
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var CommonBundle\Entity\Activity\Activity The activity of the counting
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="countings")
-     * @JoinColumn(name="activity", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="countings")
+     * @ORM\JoinColumn(name="activity", referencedColumnName="id")
      */
     private $activity;
 
     /**
      * @var string The description of the counting
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * @var \DateTime The creation time
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The cash registers of the counting
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Counting\CashRegister", mappedBy="counting", cascade = {"remove"})
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Counting\CashRegister", mappedBy="counting", cascade = {"remove"})
      */
     private $cashRegisters;
 

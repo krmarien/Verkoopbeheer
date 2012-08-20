@@ -2,40 +2,42 @@
 
 namespace CommonBundle\Entity\Counting;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Counting\CashRegister")
- * @Table(name="sale_admin.counting_cash_register")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Counting\CashRegister")
+ * @ORM\Table(name="sale_admin.counting_cash_register")
  */
 class CashRegister
 {
     /**
      * @var integer The ID of the cash register
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \CommonBundle\Entity\Counting\Counting The counting of the cash register
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Counting\Counting", inversedBy="cashRegisters")
-     * @JoinColumn(name="counting", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Counting\Counting", inversedBy="cashRegisters")
+     * @ORM\JoinColumn(name="counting", referencedColumnName="id")
      */
     private $counting;
 
     /**
      * @var string The name of the cash register
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The number of money units of the cash register
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Counting\NumberMoneyUnit", mappedBy="cashRegister", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Counting\NumberMoneyUnit", mappedBy="cashRegister", cascade={"remove"})
      */
     private $numberMoneyUnits;
 

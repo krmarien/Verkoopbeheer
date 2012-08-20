@@ -2,25 +2,27 @@
 
 namespace CommonBundle\Entity\Activity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Activity\TransactionType")
- * @Table(name="sale_admin.activity_transaction_type")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Activity\TransactionType")
+ * @ORM\Table(name="sale_admin.activity_transaction_type")
  */
 class TransactionType
 {
     /**
      * @var integer The ID of the transaction type
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string The name of the transaction type
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $name;
 

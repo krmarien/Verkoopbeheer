@@ -2,48 +2,50 @@
 
 namespace CommonBundle\Entity\Activity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Activity\Revenue")
- * @Table(name="sale_admin.activity_revenue")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Activity\Revenue")
+ * @ORM\Table(name="sale_admin.activity_revenue")
  */
 class Revenue
 {
     /**
      * @var integer The ID of the revenue
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \CommonBundle\Entity\Activity\Activity The activity of the revenue
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="revenues")
-     * @JoinColumn(name="activity", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Activity\Activity", inversedBy="revenues")
+     * @ORM\JoinColumn(name="activity", referencedColumnName="id")
      */
     private $activity;
 
     /**
      * @var \CommonBundle\Entity\Activity\TransactionType The transaction type of the revenue
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Activity\TransactionType")
-     * @JoinColumn(name="transaction_type", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Activity\TransactionType")
+     * @ORM\JoinColumn(name="transaction_type", referencedColumnName="id")
      */
     private $transactionType;
 
     /**
      * @var string The description of the revenue
      *
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * @var integer The value of the revenue
      *
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $value;
 

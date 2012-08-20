@@ -2,41 +2,43 @@
 
 namespace CommonBundle\Entity\Counting;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Counting\NumberMoneyUnit")
- * @Table(name="sale_admin.counting_number_money_unit")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Counting\NumberMoneyUnit")
+ * @ORM\Table(name="sale_admin.counting_number_money_unit")
  */
 class NumberMoneyUnit
 {
     /**
      * @var integer The ID of the number of a money unit
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \CommonBundle\Entity\Counting\CashRegister The cashregister of the number of a money unit
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Counting\CashRegister", inversedBy="numberMoneyUnits")
-     * @JoinColumn(name="cash_register", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Counting\CashRegister", inversedBy="numberMoneyUnits")
+     * @ORM\JoinColumn(name="cash_register", referencedColumnName="id")
      */
     private $cashRegister;
 
     /**
      * @var \CommonBundle\Entity\Counting\MoneyUnit The unit of the number
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Counting\MoneyUnit")
-     * @JoinColumn(name="unit", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Counting\MoneyUnit")
+     * @ORM\JoinColumn(name="unit", referencedColumnName="id")
      */
     private $unit;
 
     /**
      * @var integer The number
      *
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $number;
 

@@ -25,7 +25,7 @@ use Zend\Mvc\MvcEvent,
  *
  * @author Pieter Maene <pieter.maene@litus.cc>
  */
-class ActionController extends \Zend\Mvc\Controller\ActionController implements DoctrineAware
+class ActionController extends \Zend\Mvc\Controller\AbstractActionController implements DoctrineAware
 {
     /**
      * @var \CommonBundle\Entity\General\Language
@@ -43,7 +43,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
     {
     	$startExecutionTime = microtime(true);
 
-		$this->getLocator()->get('Zend\View\Renderer\PhpRenderer')->plugin('headMeta')->setCharset('utf-8');
+		//$this->getLocator()->get('Zend\View\Renderer\PhpRenderer')->plugin('headMeta')->setCharset('utf-8');
 
         $this->_initControllerPlugins();
         $this->_initViewHelpers();
@@ -99,7 +99,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
      */
     private function _initViewHelpers()
     {
-    	$renderer = $this->getLocator()->get('Zend\View\Renderer\PhpRenderer');
+    	/*$renderer = $this->getLocator()->get('Zend\View\Renderer\PhpRenderer');
     	$renderer->plugin('url')->setRouter($this->getLocator()->get('Zend\Mvc\Router\RouteStack'));
 
 
@@ -114,7 +114,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
     	// Date View Helper
     	$renderer->getBroker()->getClassLoader()->registerPlugin(
     		'dateLocalized', 'CommonBundle\Component\View\Helper\DateLocalized'
-    	);
+    	);*/
     }
 
     /**
@@ -138,7 +138,7 @@ class ActionController extends \Zend\Mvc\Controller\ActionController implements 
      */
     public function getEntityManager()
     {
-        return $this->getLocator()->get('doctrine_em');
+        return $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
     }
 
     /**

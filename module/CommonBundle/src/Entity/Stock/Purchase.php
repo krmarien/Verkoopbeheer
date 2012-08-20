@@ -2,63 +2,64 @@
 
 namespace CommonBundle\Entity\Stock;
 
-use DateTime;
+use DateTime,
+    Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity(repositoryClass="CommonBundle\Repository\Stock\Purchase")
- * @Table(name="sale_admin.stock_purchase")
+ * @ORM\Entity(repositoryClass="CommonBundle\Repository\Stock\Purchase")
+ * @ORM\Table(name="sale_admin.stock_purchase")
  */
 class Purchase
 {
     /**
      * @var integer The ID of the purchase
      *
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \CommonBundle\Entity\Stock\Item The stock item of the purchase
      *
-     * @ManyToOne(targetEntity="CommonBundle\Entity\Stock\Item", inversedBy="purchases")
-     * @JoinColumn(name="item", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="CommonBundle\Entity\Stock\Item", inversedBy="purchases")
+     * @ORM\JoinColumn(name="item", referencedColumnName="id")
      */
     private $item;
 
     /**
      * @var integer The price of the purchase
      *
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $price;
 
     /**
      * @var integer The number of items in the purchase
      *
-     * @Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     private $number;
 
     /**
      * @var \DateTime The date of the purchase
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var \DateTime The creation date of the purchase
      *
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection The sales of the purchase
      *
-     * @OneToMany(targetEntity="CommonBundle\Entity\Stock\Sale", mappedBy="purchase")
+     * @ORM\OneToMany(targetEntity="CommonBundle\Entity\Stock\Sale", mappedBy="purchase")
      */
     private $sales;
 
