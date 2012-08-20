@@ -9,8 +9,10 @@
 # Excluding all nasty .DS_Store files
 .DS_Store
 
+# Vendro directory, created by composer.phar
 vendor
 
+# Proxies
 data/DoctrineORMModule
 
 # We don't want to version the database configuration
@@ -20,3 +22,7 @@ config/database.config.php
 data/cache
 
 public/_assetic
+
+# Composer
+composer.lock
+composer.phar
