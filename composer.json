@@ -1,8 +1,15 @@
 {
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/krmarien/zf2-assetic-module"
+        }
+    ],
     "require": {
         "zendframework/zendframework" : "dev-master",
         "zf-commons/zfc-twig": "dev-master",
-        "doctrine/doctrine-orm-module": "dev-master"
+        "doctrine/doctrine-orm-module": "dev-master",
+        "widmogrod/zf2-assetic-module": "dev-master"
     }
 }

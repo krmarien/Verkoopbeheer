@@ -25,30 +25,4 @@ use CommonBundle\Component\Form\Bootstrap\Decorator\Errors,
  */
 class Multiselect extends \Zend\Form\Element\Multiselect
 {
-    /**
-     * Load default decorators
-     *
-     * @todo Change errors decorator to be awesomeness.
-     * @return CommonBundle\Component\Form\Bootstrap\Element
-     */
-    public function loadDefaultDecorators()
-    {
-        if ($this->loadDefaultDecoratorsIsDisabled()) {
-            return $this;
-        }
-
-        $decorators = $this->getDecorators();
-        if (empty($decorators)) {
-            $getId = function(Decorator $decorator) {
-                return $decorator->getElement()->getId() . '-element';
-            };
-            $this->addDecorator('ViewHelper')
-            	->addDecorator(new Errors())
-                ->addDecorator('Description', array('tag' => 'span', 'class' => 'help-block'))
-                ->addDecorator(array('div' => 'HtmlTag'), array('tag' => 'div', 'class' => 'controls'))
-                ->addDecorator('Label', array('class' => 'control-label'))
-                ->addDecorator('HtmlTag', array('class' => 'control-group', 'tag' => 'div'));
-        }
-        return $this;
-    }
 }

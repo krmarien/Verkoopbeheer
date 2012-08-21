@@ -2,18 +2,17 @@
 
 {% block content %}
     <div class="page-header">
-        <h1>Inkomst Bewerken <small>een inkomst van <em>{{ activity.getName() }}</em> bewerken</small></h1>
+        <h1>Inkomst Toevoegen <small>een inkomst van <em>{{ activity.getName() }}</em> toevoegen</small></h1>
     </div>
 
     <div class="row">
         <div class="span3 columns">
-            <p>Hier kan je een inkomst van een activiteit in Verkoopbeheer bewerken.</p>
+            <p>Hier kan je een inkomst toevoegen aan een activiteit in Verkoopbeheer.</p>
             <a href="{{ url('common_activity', {'action': 'view', 'id': activity.getId()}) }}" class="btn">Terug</a>
         </div>
         <div class="span9 columns">
-            {% autoescape false %}
-                {{ form }}
-            {% endautoescape %}
+            {% import 'common/partials/form.twig' as forms %}
+            {{ forms.renderForm(form) }}
         </div>
     </div>
 {% endblock %}

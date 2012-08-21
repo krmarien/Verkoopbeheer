@@ -11,9 +11,8 @@
             <a href="{{ url('common_activity') }}" class="btn">Terug</a>
         </div>
         <div class="span9 columns">
-            {% autoescape false %}
-                {{ form }}
-            {% endautoescape %}
+            {% import 'common/partials/form.twig' as forms %}
+            {{ forms.renderForm(form) }}
         </div>
     </div>
 {% endblock %}

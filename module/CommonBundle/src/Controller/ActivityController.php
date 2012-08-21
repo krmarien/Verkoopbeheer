@@ -39,9 +39,10 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
         $form = new AddForm();
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $activity = new Activity(
                     $formData['name'],
                     $formData['location'],
@@ -81,9 +82,10 @@ class ActivityController extends \CommonBundle\Component\Controller\ActionContro
         $form = new EditForm($activity);
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $activity->setName($formData['name'])
                     ->setLocation($formData['location'])
                     ->setDate(DateTime::createFromFormat('d#m#Y', $formData['date']));

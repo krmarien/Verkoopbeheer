@@ -20,7 +20,9 @@ use CommonBundle\Component\Form\Bootstrap\Element\Select,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
     CommonBundle\Component\Validator\Price as PriceValidator,
     CommonBundle\Entity\Activity\Expense,
-    Doctrine\ORM\EntityManager;
+    Doctrine\ORM\EntityManager,
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add a expense.
@@ -34,38 +36,32 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct(EntityManager $entityManager, $opts = null)
+    public function __construct(EntityManager $entityManager, $name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
 
         $this->_entityManager = $entityManager;
 
         $field = new Select('type');
         $field->setLabel('Type')
-            ->setMultiOptions($this->_getTypes())
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('options', $this->_getTypes());
+        $this->add($field);
 
         $field = new Text('description');
         $field->setLabel('Omschrijving')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $field = new Text('value');
         $field->setLabel('Waarde')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired()
-            ->addValidator(new PriceValidator());
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Toevoegen');
+        $this->add($field);
     }
 
     private function _getTypes()
@@ -83,12 +79,58 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
     public function populateFromExpense(Expense $expense)
     {
-        $this->populate(
+        $this->setData(
             array(
                 'type' => $expense->getTransactionType()->getId(),
                 'description' => $expense->getDescription(),
                 'value' => number_format($expense->getValue()/100, 2),
             )
         );
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'type',
+                        'required' => true,
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'description',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'value',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            new PriceValidator()
+                        ),
+                    )
+                )
+            );
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

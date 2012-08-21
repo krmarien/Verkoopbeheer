@@ -15,7 +15,7 @@
 
 namespace CommonBundle\Component\Form\Bootstrap;
 
-use CommonBundle\Component\Form\Bootstrap\DisplayGroup\Actions;
+use Zend\InputFilter\InputFilterAwareInterface;
 
 /**
  * Extending Zend's form component, so that our forms look the way we want
@@ -23,40 +23,37 @@ use CommonBundle\Component\Form\Bootstrap\DisplayGroup\Actions;
  *
  * @author Kristof Mariën <kristof.marien@litus.cc>
  */
-class Form extends \Zend\Form\Form
+abstract class Form extends \Zend\Form\Form implements InputFilterAwareInterface
 {
+    /**
+     * @var \Zend\InputFilter\InputFilter
+     */
+    protected $_inputFilter;
+
 	/**
-	 * @param mixed $options The form's options
+     * @param null|string|int $name Optional name for the element
 	 */
-    public function __construct($options)
+    public function __construct($name = null)
     {
-        parent::__construct($options = null);
+        parent::__construct($name);
 
-        $this->setMethod('post');
-
-        $this->setAttrib('class', 'form-horizontal');
-        $this->removeDecorator('HtmlTag');
+        $this->setAttribute('method', 'post');
+        $this->setAttribute('class', 'form-horizontal');
     }
 
-    public function setActionsGroup($elements)
+    /**
+     * Set data to validate and/or populate elements
+     *
+     * Typically, also passes data on to the composed input filter.
+     *
+     * @param  array|\ArrayAccess|\Traversable $data
+     * @return Form|FormInterface
+     * @throws Exception\InvalidArgumentException
+     */
+    public function setData($data)
     {
-    	$group = array();
-    	foreach ($elements as $element) {
-    	    if (isset($this->_elements[$element])) {
-    	        $add = $this->getElement($element);
-    	        if (null !== $add) {
-    	            unset($this->_order[$element]);
-    	            $group[] = $add;
-    	        }
-    	    }
-    	}
+        parent::setData($data);
 
-    	$actions = new Actions('form_actions', $this->getPluginLoader(self::DECORATOR), array('elements' => $group));
-    	$this->_addDisplayGroupObject($actions);
-    }
-
-    public function removeActionsGroup()
-    {
-        $this->removeDisplayGroup('form_actions');
+        $this->setInputFilter($this->getInputFilter());
     }
 }

@@ -19,7 +19,9 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
     CommonBundle\Component\Validator\TransactionTypeName as NameValidator,
     CommonBundle\Entity\Activity\Activity,
-    Doctrine\ORM\EntityManager;
+    Doctrine\ORM\EntityManager,
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add a transaction type.
@@ -27,24 +29,52 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
 class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 {
     /**
-     * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-     * @param mixed $opts The validator's options
+     * @var \Doctrine\ORM\EntityManager
      */
-    public function __construct(EntityManager $entityManager, $opts = null)
+    private $_entityManager;
+
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
+     * @param null|string|int $name Optional name for the element
+     */
+    public function __construct(EntityManager $entityManager, $name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
+
+        $this->_entityManager = $entityManager;
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired()
-            ->addValidator(new NameValidator($entityManager));
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
+        $field->setValue('Toevoegen');
+        $this->add($field);
+    }
 
-        $this->setActionsGroup(array('submit'));
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'name',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            new NameValidator($this->_entityManager)
+                        ),
+                    )
+                )
+            );
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

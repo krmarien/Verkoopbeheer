@@ -1,7 +1,7 @@
 <?php
 return array(
     'modules' => array(
-        //'AsseticBundle',
+        'AsseticBundle',
         'DoctrineModule',
         'DoctrineORMModule',
         'ZfcTwig',

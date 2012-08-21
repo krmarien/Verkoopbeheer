@@ -26,19 +26,17 @@ class Edit extends Add
 {
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct(EntityManager $entityManager, Expense $expense, $opts = null)
+    public function __construct(EntityManager $entityManager, Expense $expense, $name = null)
     {
-        parent::__construct($entityManager, $opts);
+        parent::__construct($entityManager, $name);
 
-        $this->removeElement('submit');
+        $this->remove('submit');
 
         $field = new Submit('submit');
-        $field->setLabel('Opslaan');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Opslaan');
+        $this->add($field);
 
         $this->populateFromExpense($expense);
     }

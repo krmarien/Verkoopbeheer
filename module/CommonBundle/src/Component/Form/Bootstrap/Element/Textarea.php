@@ -39,7 +39,7 @@ class Textarea extends \CommonBundle\Component\Form\Bootstrap\Element
     public function __construct($spec, $options = null)
     {
     	parent::__construct($spec, $options);
-    	$this->setAttrib('class', 'input-xxlarge');
-    	$this->setAttrib('rows', 10);
+    	$this->setAttribute('class', 'input-xxlarge');
+    	$this->setAttribute('rows', 10);
     }
 }

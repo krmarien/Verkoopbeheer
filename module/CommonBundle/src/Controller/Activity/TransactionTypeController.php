@@ -22,9 +22,10 @@ class TransactionTypeController extends \CommonBundle\Component\Controller\Actio
         $form = new AddForm($this->getEntityManager());
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $transactionType = new TransactionType($formData['name']);
 
                 $this->getEntityManager()->persist($transactionType);

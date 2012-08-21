@@ -22,5 +22,4 @@ namespace CommonBundle\Component\Form\Bootstrap\Element;
  */
 class Text extends \CommonBundle\Component\Form\Bootstrap\Element
 {
-
 }

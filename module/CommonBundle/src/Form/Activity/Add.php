@@ -18,7 +18,8 @@ namespace CommonBundle\Form\Activity;
 use CommonBundle\Component\Form\Bootstrap\Element\Submit,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
     CommonBundle\Entity\Activity\Activity,
-    Zend\Validator\Date as DateValidator;
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add an activity.
@@ -26,47 +27,94 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
 class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 {
     /**
-     * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct($opts = null)
+    public function __construct($name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $field = new Text('location');
         $field->setLabel('Locatie')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xxlarge')
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xxlarge');
+        $this->add($field);
 
         $field = new Text('date');
         $field->setLabel('Datum')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-large')
-            ->setRequired()
-            ->addValidator(new DateValidator('dd/MM/yyyy'));
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-large');
+        $this->add($field);
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Toevoegen');
+        $this->add($field);
     }
 
     public function populateFromActivity(Activity $activity)
     {
-        $this->populate(
+        $this->setData(
             array(
                 'name' => $activity->getName(),
                 'location' => $activity->getLocation(),
                 'date' => $activity->getDate()->format('d/m/Y')
             )
         );
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'name',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'location',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'date',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            array(
+                                'name'    => 'Date',
+                                'options' => array(
+                                    'format' => 'd/m/Y',
+                                ),
+                            ),
+                        ),
+                    )
+                )
+            );
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

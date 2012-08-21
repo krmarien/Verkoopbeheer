@@ -23,9 +23,10 @@ class RevenueController extends \CommonBundle\Component\Controller\ActionControl
         $form = new AddForm($this->getEntityManager());
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $transactionType = $this->getEntityManager()
                     ->getRepository('CommonBundle\Entity\Activity\TransactionType')
                     ->findOneById($formData['type']);
@@ -76,9 +77,10 @@ class RevenueController extends \CommonBundle\Component\Controller\ActionControl
         $form = new EditForm($this->getEntityManager(), $revenue);
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $transactionType = $this->getEntityManager()
                     ->getRepository('CommonBundle\Entity\Activity\TransactionType')
                     ->findOneById($formData['type']);

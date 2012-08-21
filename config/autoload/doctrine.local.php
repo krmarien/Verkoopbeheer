@@ -4,8 +4,7 @@ return array(
         'configuration' => array(
             'orm_default' => array(
                 'generate_proxies'  => ('development' == getenv('APPLICATION_ENV')),
-                'proxy_dir'         => 'data/proxies/',
-                'proxy_namespace'   => 'DoctrineORMModule\Proxy',
+                'proxyDir'         => 'data/proxies/',
             )
         ),
         'connection' => array(
