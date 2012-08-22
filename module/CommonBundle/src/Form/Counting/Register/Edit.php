@@ -24,19 +24,17 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
 class Edit extends Add
 {
     /**
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct(CashRegister $register, $opts = null)
+    public function __construct(CashRegister $register, $name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
 
-        $this->removeElement('submit');
+        $this->remove('submit');
 
         $field = new Submit('submit');
-        $field->setLabel('Opslaan');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Opslaan');
+        $this->add($field);
 
         $this->populateFromCashRegister($register);
     }

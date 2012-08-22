@@ -48,9 +48,7 @@ class ActionController extends \Zend\Mvc\Controller\AbstractActionController imp
         $this->_initControllerPlugins();
         $this->_initViewHelpers();
 
-        //\Zend\Registry::set('Zend_Locale', 'nl');
-        //$translator = new \Zend\Translator\Translator('ArrayAdapter', 'vendor/ZendFramework/resources/languages/nl/Zend_Validate.php', 'nl');
-        //\Zend\Registry::set('Zend_Translator', $translator);
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($this->getServiceLocator()->get('translator'));
 
 		$result = parent::onDispatch($e);
 

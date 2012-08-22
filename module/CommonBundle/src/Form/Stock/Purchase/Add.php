@@ -20,8 +20,8 @@ use CommonBundle\Component\Form\Bootstrap\Element\Select,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
     CommonBundle\Component\Validator\Price as PriceValidator,
     Doctrine\ORM\EntityManager,
-    Zend\Validator\Date as DateValidator,
-    Zend\Validator\Int as IntValidator;
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add a purchase.
@@ -35,46 +35,37 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager The EntityManager instance
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct(EntityManager $entityManager, $opts = null)
+    public function __construct(EntityManager $entityManager, $name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
 
         $this->_entityManager = $entityManager;
 
         $field = new Select('item');
         $field->setLabel('Item')
-            ->setMultiOptions($this->_getItems())
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('options', $this->_getItems());
+        $this->add($field);
 
         $field = new Text('price');
         $field->setLabel('Prijs')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-medium')
-            ->setRequired()
-            ->addValidator(new PriceValidator());
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-medium');
+        $this->add($field);
 
         $field = new Text('number');
         $field->setLabel('Aantal')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-medium')
-            ->setRequired()
-            ->addValidator(new IntValidator());
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-medium');
+        $this->add($field);
 
         $field = new Text('date');
         $field->setLabel('Datum')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-large')
-            ->setRequired()
-            ->addValidator(new DateValidator('dd/MM/yyyy'));
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-large');
+        $this->add($field);
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Toevoegen');
+        $this->add($field);
     }
 
     private function _getItems()
@@ -88,5 +79,77 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
             $itemsArray[$item->getId()] = $item->getName();
         }
         return $itemsArray;
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'item',
+                        'required' => true,
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'price',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            new PriceValidator()
+                        ),
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'number',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            array(
+                                'name'    => 'Int',
+                            ),
+                        ),
+                    )
+                )
+            );
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'date',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            array(
+                                'name'    => 'Date',
+                                'options' => array(
+                                    'format' => 'd/m/Y',
+                                ),
+                            ),
+                        ),
+                    )
+                )
+            );
+
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

@@ -23,9 +23,10 @@ class CountingController extends \CommonBundle\Component\Controller\ActionContro
         $form = new AddForm();
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $counting = new Counting(
                     $activity,
                     $formData['name']
@@ -69,9 +70,10 @@ class CountingController extends \CommonBundle\Component\Controller\ActionContro
         $form = new EditForm($counting);
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $counting->setDescription($formData['name']);
 
                 $this->getEntityManager()->flush();

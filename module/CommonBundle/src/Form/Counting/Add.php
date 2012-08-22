@@ -17,7 +17,9 @@ namespace CommonBundle\Form\Counting;
 
 use CommonBundle\Component\Form\Bootstrap\Element\Submit,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
-    CommonBundle\Entity\Counting\Counting;
+    CommonBundle\Entity\Counting\Counting,
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add a counting.
@@ -25,31 +27,50 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
 class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 {
     /**
-     * @param mixed $opts The validator's options
+     * @param null|string|int $name Optional name for the element
      */
-    public function __construct($opts = null)
+    public function __construct($name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Toevoegen');
+        $this->add($field);
     }
 
     public function populateFromCounting(Counting $counting)
     {
-        $this->populate(
+        $this->setData(
             array(
                 'name' => $counting->getDescription(),
             )
         );
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'name',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                    )
+                )
+            );
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

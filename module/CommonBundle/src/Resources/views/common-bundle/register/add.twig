@@ -2,18 +2,17 @@
 
 {% block content %}
     <div class="page-header">
-        <h1>Kassa Bewerken <small>een kassa van telling <em>{{ counting.getDescription() }}</em> bewerken</small></h1>
+        <h1>Kassa Toevoegen <small>een kassa toevoegen aan telling <em>{{ counting.getDescription() }}</em></small></h1>
     </div>
 
     <div class="row">
         <div class="span3 columns">
-            <p>Hier kan je een telling van Verkoopbeheer bewerken.</p>
+            <p>Hier kan je een telling toevoegen aan Verkoopbeheer.</p>
             <a href="{{ url('common_counting', {'action': 'view', 'id': counting.getId()}) }}" class="btn">Terug</a>
         </div>
         <div class="span9 columns">
-            {% autoescape false %}
-                {{ form }}
-            {% endautoescape %}
+            {% import 'common/partials/form.twig' as forms %}
+            {{ forms.renderForm(form) }}
         </div>
     </div>
 {% endblock %}

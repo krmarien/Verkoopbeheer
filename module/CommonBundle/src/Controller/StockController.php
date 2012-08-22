@@ -33,9 +33,10 @@ class StockController extends \CommonBundle\Component\Controller\ActionControlle
         $form = new AddForm();
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $item = new Item(
                     $formData['name']
                 );
@@ -73,9 +74,10 @@ class StockController extends \CommonBundle\Component\Controller\ActionControlle
         $form = new EditForm($item);
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $item->setName($formData['name']);
 
                 $this->getEntityManager()->flush();

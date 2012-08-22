@@ -23,9 +23,10 @@ class SaleController extends \CommonBundle\Component\Controller\ActionController
         $form = new AddForm($this->getEntityManager());
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $item = $this->getEntityManager()
                     ->getRepository('CommonBundle\Entity\Stock\Item')
                     ->findOneById($formData['item']);

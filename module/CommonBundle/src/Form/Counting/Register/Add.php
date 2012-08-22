@@ -19,7 +19,8 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
     CommonBundle\Component\Form\Bootstrap\Element\Text,
     CommonBundle\Entity\Counting\CashRegister,
     Doctrine\ORM\EntityManager,
-    Zend\Validator\Int as IntValidator;
+    Zend\InputFilter\InputFilter,
+    Zend\InputFilter\Factory as InputFactory;
 
 /**
  * Add a register.
@@ -27,35 +28,38 @@ use CommonBundle\Component\Form\Bootstrap\Element\Submit,
 class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 {
     /**
-     * @param mixed $opts The validator's options
+     * @var \Doctrine\ORM\EntityManager
      */
-    public function __construct(EntityManager $entityManager, $opts = null)
+    private $_entityManager;
+
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     * @param null|string|int $name Optional name for the element
+     */
+    public function __construct(EntityManager $entityManager, $name = null)
     {
-        parent::__construct($opts);
+        parent::__construct($name);
+
+        $this->_entityManager = $entityManager;
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttrib('class', $field->getAttrib('class') . ' input-xlarge')
-            ->setRequired();
-        $this->addElement($field);
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+        $this->add($field);
 
         $units = $entityManager->getRepository('CommonBundle\Entity\Counting\MoneyUnit')
             ->findAll();
         foreach($units as $unit) {
             $field = new Text('unit_' . $unit->getId());
             $field->setLabel('€ ' . number_format($unit->getValue()/100, 2))
-                ->setAttrib('class', $field->getAttrib('class') . ' input-medium')
-                ->setValue(0)
-                ->setRequired()
-                ->addValidator(new IntValidator());
-            $this->addElement($field);
+                ->setAttribute('class', $field->getAttribute('class') . ' input-medium')
+                ->setValue(0);
+            $this->add($field);
         }
 
         $field = new Submit('submit');
-        $field->setLabel('Toevoegen');
-        $this->addElement($field);
-
-        $this->setActionsGroup(array('submit'));
+        $field->setValue('Toevoegen');
+        $this->add($field);
     }
 
     public function populateFromCashRegister(CashRegister $cashRegister)
@@ -67,6 +71,50 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
         foreach($cashRegister->getNumberMoneyUnits() as $number)
             $data['unit_' . $number->getUnit()->getId()] = $number->getNumber();
 
-        $this->populate($data);
+        $this->setData($data);
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->_inputFilter == null) {
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+
+            $inputFilter->add(
+                $factory->createInput(
+                    array(
+                        'name'     => 'name',
+                        'required' => true,
+                        'filters'  => array(
+                            array('name' => 'StringTrim'),
+                        ),
+                    )
+                )
+            );
+
+            $units = $this->_entityManager->getRepository('CommonBundle\Entity\Counting\MoneyUnit')
+                ->findAll();
+            foreach($units as $unit) {
+                $inputFilter->add(
+                    $factory->createInput(
+                        array(
+                            'name'     => 'unit_' . $unit->getId(),
+                            'required' => true,
+                            'filters'  => array(
+                                array('name' => 'StringTrim'),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name'    => 'Int',
+                                ),
+                            ),
+                        )
+                    )
+                );
+            }
+
+            $this->_inputFilter = $inputFilter;
+        }
+        return $this->_inputFilter;
     }
 }

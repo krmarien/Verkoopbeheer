@@ -24,9 +24,10 @@ class RegisterController extends \CommonBundle\Component\Controller\ActionContro
         $form = new AddForm($this->getEntityManager());
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $register = new CashRegister($counting, $formData['name']);
 
                 $units = $this->getEntityManager()
@@ -75,9 +76,10 @@ class RegisterController extends \CommonBundle\Component\Controller\ActionContro
         $form = new EditForm($register, $this->getEntityManager());
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->post()->toArray();
+            $formData = $this->getRequest()->getPost();
+            $form->setData($formData);
 
-            if ($form->isValid($formData)) {
+            if ($form->isValid()) {
                 $register->setName($formData['name']);
 
                 $units = $this->getEntityManager()

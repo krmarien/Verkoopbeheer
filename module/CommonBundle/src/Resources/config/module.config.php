@@ -170,21 +170,21 @@ return array(
             ),
         ),
     ),
-    /*'service_manager' => array(
+    'service_manager' => array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
-        'translation_patterns' => array(
+        'locale' => 'nl',
+        'translation_files' => array(
             array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
+                'type'     => 'phparray',
+                'filename' => './vendor/zendframework/zendframework/resources/languages/nl/Zend_Validate.php',
+                'locale'   => 'nl'
             ),
         ),
-    ),*/
+    ),
     'controllers' => array(
         'invokables' => array(
             'install_common'                   => 'CommonBundle\Controller\InstallController',
