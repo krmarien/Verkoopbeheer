@@ -10,18 +10,25 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
         			<a href="{{ url("common_activity") }}" class="brand"><img src="/_common/img/logo_white.png" alt="" /></a>
-        			<ul class="nav">
-        			    <li {% if 'common_activity' == getParam('controller') or 'common_activity_expense' == getParam('controller') or 'common_activity_revenue' == getParam('controller') or 'common_activity_transaction_type' == getParam('controller') or 'common_stock_sale' == getParam('controller') %}class="active"{% endif %}>
-        				    <a href="{{ url("common_activity") }}">Activiteiten</a>
-        				</li>
-                        <li {% if 'common_stock' == getParam('controller') or 'common_stock_purchase' == getParam('controller') %}class="active"{% endif %}>
-                            <a href="{{ url("common_stock") }}">Stock</a>
-                        </li>
-        			</ul>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+            			    <li {% if 'common_activity' == getParam('controller') or 'common_activity_expense' == getParam('controller') or 'common_activity_revenue' == getParam('controller') or 'common_activity_transaction_type' == getParam('controller') or 'common_stock_sale' == getParam('controller') or 'common_counting' == getParam('controller') or 'common_counting_register' == getParam('controller') %}class="active"{% endif %}>
+            				    <a href="{{ url("common_activity") }}">Activiteiten</a>
+            				</li>
+                            <li {% if 'common_stock' == getParam('controller') or 'common_stock_purchase' == getParam('controller') %}class="active"{% endif %}>
+                                <a href="{{ url("common_stock") }}">Stock</a>
+                            </li>
+            			</ul>
+                    </div>
         		</div>
         	</div>
         </nav>

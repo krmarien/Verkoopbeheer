@@ -69,6 +69,7 @@ class ActionController extends \Zend\Mvc\Controller\AbstractActionController imp
         $result->setTerminal(true);
 
         $e->setResult($result);
+
         return $result;
     }
 

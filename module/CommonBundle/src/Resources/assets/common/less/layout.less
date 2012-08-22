@@ -1,13 +1,17 @@
-header {
+body {
+    position: relative;
     padding-top: 40px;
+}
+
+header {
     .verticalGradient(@cAdminDark, @cAdminLight);
     margin-bottom: 15px;
-    
+
     h1 {
         color: @cWhite;
         text-shadow: 0 1px 1px rgba(0,0,0,.3);
     }
-    
+
     .inner {
         background: transparent url(/_common/img/grid-18px.png) top center;
         padding: 25px 0;
@@ -33,4 +37,13 @@ table {
 
 .clear {
     clear: both;
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+    body {
+        padding-top: 0;
+    }
+    header {
+        margin-top: -20px;
+    }
 }

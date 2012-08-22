@@ -13,7 +13,7 @@
  * @license http://litus.cc/LICENSE
  */
 
-$asseticConfig = include __DIR__ . '/../../../../../config/assetic.config.php';
+$asseticConfig = include './config/assetic.config.php';
 
 return array(
     'router' => array(
@@ -233,12 +233,12 @@ return array(
 
     'assetic_configuration' => array(
         'debug' => false,
-        'webPath' => __DIR__ . '/../../../../../public/_assetic',
+        'webPath' => './public/_assetic',
         'strategyForRenderer' => array(
             'AsseticBundle\View\ViewHelperStrategy' => 'Zend\View\Renderer\PhpRenderer'
         ),
         'cacheEnabled' => true,
-        'cachePath' => __DIR__ . '/../../../../../data/cache',
+        'cachePath' => './data/cache',
         'baseUrl' => '/_assetic',
         'controllers' => $asseticConfig['controllers'],
         'routes' => $asseticConfig['routes'],
@@ -255,7 +255,7 @@ return array(
                     'common_css' => array(
                         'assets'  => array(
                             'common/css/bootstrap.min.css',
-                            'common/css/bootstrap-responsive.css',
+                            'common/css/bootstrap-responsive.min.css',
                             'common/css/admin.css',
                         ),
                         'options' => array(
