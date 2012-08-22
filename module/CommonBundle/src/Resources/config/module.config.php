@@ -256,7 +256,7 @@ return array(
                         'assets'  => array(
                             'common/css/bootstrap.min.css',
                             'common/css/bootstrap-responsive.min.css',
-                            'common/css/admin.css',
+                            'common/css/common.css',
                         ),
                         'options' => array(
                             'output' => 'common.css'
