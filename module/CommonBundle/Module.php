@@ -2,19 +2,13 @@
 
 namespace CommonBundle;
 
-/*use Zend\Module\Manager,
-	Zend\EventManager\Event,
-    Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider,
-    Zend\Mvc\MvcEvent;*/
-
 use Zend\Mvc\ModuleRouteListener;
 
 class Module
 {
     public function onBootstrap($e)
     {
-        //$e->getApplication()->getServiceManager()->get('translator');
+        $e->getApplication()->getServiceManager()->get('translator');
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);

@@ -211,8 +211,8 @@ return array(
             'error/index'             => __DIR__ . '/../views/error/index.twig',
         ),
         'template_path_stack' => array(
-            __DIR__ . '/../layouts',
-            __DIR__ . '/../views',
+            'commonbundle_layout' => __DIR__ . '/../layouts',
+            'commonbundle_view' => __DIR__ . '/../views',
         ),
     ),
 

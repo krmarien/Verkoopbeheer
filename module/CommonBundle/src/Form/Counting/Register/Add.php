@@ -44,7 +44,8 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge')
+            ->setRequired();
         $this->add($field);
 
         $units = $entityManager->getRepository('CommonBundle\Entity\Counting\MoneyUnit')
@@ -53,7 +54,8 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
             $field = new Text('unit_' . $unit->getId());
             $field->setLabel('€ ' . number_format($unit->getValue()/100, 2))
                 ->setAttribute('class', $field->getAttribute('class') . ' input-medium')
-                ->setValue(0);
+                ->setValue(0)
+                ->setRequired();
             $this->add($field);
         }
 

@@ -35,17 +35,20 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
         $field = new Text('name');
         $field->setLabel('Naam')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xlarge')
+            ->setRequired();
         $this->add($field);
 
         $field = new Text('location');
         $field->setLabel('Locatie')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-xxlarge');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-xxlarge')
+            ->setRequired();
         $this->add($field);
 
         $field = new Text('date');
         $field->setLabel('Datum')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-large');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-large')
+            ->setRequired();
         $this->add($field);
 
         $field = new Submit('submit');

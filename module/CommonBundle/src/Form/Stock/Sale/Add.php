@@ -49,7 +49,8 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
         $field = new Text('number');
         $field->setLabel('Aantal')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-medium');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-medium')
+            ->setRequired();
         $this->add($field);
 
         $field = new Submit('submit');

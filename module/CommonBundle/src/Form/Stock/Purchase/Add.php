@@ -50,17 +50,20 @@ class Add extends \CommonBundle\Component\Form\Bootstrap\Form
 
         $field = new Text('price');
         $field->setLabel('Prijs')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-medium');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-medium')
+            ->setRequired();
         $this->add($field);
 
         $field = new Text('number');
         $field->setLabel('Aantal')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-medium');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-medium')
+            ->setRequired();
         $this->add($field);
 
         $field = new Text('date');
         $field->setLabel('Datum')
-            ->setAttribute('class', $field->getAttribute('class') . ' input-large');
+            ->setAttribute('class', $field->getAttribute('class') . ' input-large')
+            ->setRequired();
         $this->add($field);
 
         $field = new Submit('submit');
