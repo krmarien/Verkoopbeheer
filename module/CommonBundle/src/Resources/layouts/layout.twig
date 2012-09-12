@@ -67,6 +67,7 @@
 <div id="layout">
     <div class="header"><span>Residentie Groenveld&mdash;Verkoopbeheer</span> / Error</div>
     <div class="content">
+    	{% block content %}{% endblock %}
         {% autoescape false %}
             {{ content }}
         {% endautoescape %}
