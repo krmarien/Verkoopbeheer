@@ -1,38 +1,113 @@
-<h2>{{ message }}</h2>
-	
-{% if display_exceptions is defined and display_exceptions %}
+{{ doctype() }}
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-	{% if exception is defined %}
-        
-        <h3>Exception Information</h3>
-        <p>
-            <b>Message:</b> {{ exception.getMessage() }}
-        </p>
-        			
-		<h3>Stack Trace</h3>
-		<table>
-		    <tr>
-		        <th>#</th>
-		        <th>Line</th>
-		        <th>Function</th>
-		        <th>Class</th>
-		    </tr>
-		
-		    {% for traceNumber, traceItem in exception.getTrace() %}
-			    <tr>
-			        <td>{{ traceNumber }}</td>
-			        <td>{{ traceItem.line }}</td>
-			        <td>{{ traceItem.function }}</td>
-			        <td>{{ traceItem.class }}</td>
-			    </tr>
-		    {% endfor %}
-		
-		</table>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-    {% else %}
-    
-        <h3>No Exception available</h3>
-        
-    {% endif %}
-    	
-{% endif %}
+    {{ headTitle('Residentie Groenveld - Verkoopbeheer', 'PREPEND') }}
+
+    <style type="text/css">
+        body {
+            background: #F0EFE2;
+            font: normal 13px 'trebuchet ms', arial, sans-serif;
+        }
+
+        #layout {
+            margin: 130px auto;
+            width: 500px;
+        }
+
+        .header {
+            font-weight: bold;
+            color: #d7d4d4;
+            text-align: right;
+            margin: 0 6px 5px 0;
+        }
+
+        pre {
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        span {
+            color: #7AA300;
+        }
+
+        h2 {
+            font-size: 15px;
+            color: #7AA300;
+        }
+
+        h3 {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .content {
+            padding: 12px;
+            background: #eeeeee;
+            border: 5px solid #d7d4d4;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="layout">
+    <div class="header"><span>Residentie Groenveld&mdash;Verkoopbeheer</span> / Error</div>
+    <div class="content">
+        <h2>{{ message }}</h2>
+
+        {% if display_exceptions is defined and display_exceptions %}
+
+            {% if exception is defined %}
+
+                <h3>Exception Information</h3>
+                <p>
+                    <b>Message:</b> {{ exception.getMessage() }}
+                </p>
+
+                <h3>Stack Trace</h3>
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Line</th>
+                        <th>Function</th>
+                        <th>Class</th>
+                    </tr>
+
+                    {% for traceNumber, traceItem in exception.getTrace() %}
+                        <tr>
+                            <td>{{ traceNumber }}</td>
+                            <td>{{ traceItem.line }}</td>
+                            <td>{{ traceItem.function }}</td>
+                            <td>{{ traceItem.class }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+            {% else %}
+
+                <h3>No Exception available</h3>
+
+            {% endif %}
+
+        {% endif %}
+    </div>
+</div>
+
+</body>
+
+</html>
